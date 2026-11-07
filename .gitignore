@@ -1,0 +1,12 @@
+node_modules/
+dist/
+build/
+*.local
+.server.log
+.server.err
+backups/
+__pycache__/
+*.pyc
+/.mcd2-data-*/
+/.mcd2-recovery-*/
+public/DEPENDENCY-LICENSES.txt

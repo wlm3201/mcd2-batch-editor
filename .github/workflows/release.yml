@@ -1,0 +1,59 @@
+name: Build editor packages
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm test
+
+      - name: Build desktop package
+        run: node tools/build-app.mjs
+
+      - name: Build standalone HTML
+        run: node tools/build-standalone.mjs
+
+      - name: Zip desktop package
+        run: Compress-Archive -Path build/MCD2BatchEditor/* -DestinationPath build/MCD2BatchEditor.zip
+
+      - name: Upload installable packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: MCD2BatchEditor
+          path: |
+            build/MCD2BatchEditor.zip
+            build/MCD2BatchEditor-standalone.html
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: MCD2BatchEditor
+          path: build
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            build/MCD2BatchEditor.zip
+            build/MCD2BatchEditor-standalone.html
+          generate_release_notes: true
