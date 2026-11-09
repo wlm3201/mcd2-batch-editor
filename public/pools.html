@@ -1,0 +1,698 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <link id="favicon" rel="icon" href="data:," />
+    <title>词条总览 · MCD2</title>
+    <style>
+      :root {
+  color-scheme: dark;
+  --bg: #12191b;
+  --panel: #192224;
+  --line: #344342;
+  --hair: #2a3837;
+  --ink: #edf4ef;
+  --dim: #b3c1ba;
+  --quiet: #99ada4;
+  --mint: #a6e4bc;
+  --mono: ui-monospace, Consolas, monospace;
+  background: var(--bg);
+  color: var(--ink);
+  font:
+    14px/1.5 'Segoe UI',
+    'Microsoft YaHei UI',
+    system-ui,
+    sans-serif;
+}
+* {
+  box-sizing: border-box;
+}
+body,
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+button {
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+[hidden] {
+  display: none !important;
+}
+.sr,
+.choice input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.shell {
+  width: min(1480px, calc(100% - clamp(28px, 6vw, 96px)));
+  margin-inline: auto;
+}
+.mast {
+  background: #151e20;
+  border-bottom: 1px solid var(--hair);
+}
+.mast-inner,
+.mast-tools,
+.brand,
+.languages,
+.search,
+.filter-row,
+.choices,
+.card-head,
+.tags {
+  display: flex;
+  align-items: center;
+}
+.mast-inner {
+  min-height: 56px;
+  gap: 18px;
+}
+.brand {
+  flex: none;
+  gap: 9px;
+}
+.brand img {
+  border: 1px solid #49594b;
+  border-radius: 7px;
+  background: #28352b;
+}
+.brand strong {
+  font-size: 17px;
+  letter-spacing: 0.04em;
+}
+.brand h1 {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 650;
+  border-left: 1px solid var(--line);
+  padding-left: 9px;
+}
+.mast-tools {
+  flex: none;
+  gap: 12px;
+}
+#version {
+  font: 12px var(--mono);
+  color: var(--quiet);
+}
+.languages {
+  gap: 2px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  padding: 2px;
+}
+.languages button,
+.choice span {
+  font-size: 12px;
+  color: var(--dim);
+  padding: 4px 9px;
+  border-radius: 4px;
+}
+.languages [aria-pressed='true'],
+.choice input:checked + span {
+  background: #304638;
+  color: #d6f4dd;
+}
+.languages button:hover,
+.choice:hover span {
+  color: var(--ink);
+  background: #26372d;
+}
+.choice {
+  position: relative;
+  cursor: pointer;
+}
+.choice span {
+  display: block;
+  white-space: nowrap;
+}
+.choice input:focus-visible + span {
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+.search {
+  flex: 1;
+  min-width: 0;
+  max-width: 400px;
+  margin-left: auto;
+  gap: 10px;
+  background: var(--panel);
+  border: 1px solid #46594d;
+  border-radius: 7px;
+  padding-inline: 12px;
+  color: var(--quiet);
+}
+.search:focus-within {
+  outline: 2px solid var(--mint);
+  outline-offset: 1px;
+}
+.search input {
+  background: none;
+  border: 0;
+  outline: none;
+  min-width: 0;
+  flex: 1;
+  height: 36px;
+  font-size: 13px;
+}
+.search input:focus-visible {
+  outline: 0;
+}
+.search svg,
+.search kbd {
+  flex: none;
+}
+.search kbd {
+  font: 11px var(--mono);
+  padding: 2px 5px;
+  border-radius: 4px;
+  border: 1px solid var(--line);
+}
+.filters {
+  border-bottom: 1px solid var(--line);
+  padding: 8px 0;
+}
+.filter-row {
+  gap: 9px;
+  min-width: 0;
+}
+.filter-row + .filter-row {
+  margin-top: 5px;
+}
+.filter-label {
+  width: 42px;
+  flex: none;
+  font-size: 12px;
+  color: var(--quiet);
+}
+.choices {
+  flex-wrap: wrap;
+  gap: 3px;
+  min-width: 0;
+}
+.pool-row {
+  align-items: flex-start;
+}
+.pool-row .filter-label {
+  padding-top: 4px;
+}
+.results {
+  margin-left: auto;
+  color: var(--dim);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+#effect-list {
+  padding-bottom: 32px;
+}
+.group {
+  --accent: #efa695;
+  margin-top: 19px;
+}
+.group[data-category='defensive'] {
+  --accent: #9ecfeb;
+}
+.group[data-category='utility'] {
+  --accent: #d5cc95;
+}
+.group-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 9px;
+}
+.group-title::before {
+  content: '';
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+.group-title small {
+  font: 11px var(--mono);
+  color: var(--quiet);
+  font-weight: 400;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 10px;
+}
+.effect-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  scroll-margin-block: 18px;
+}
+.effect-card:target,
+.effect-card.bookmark {
+  border-color: var(--mint);
+  background: #203029;
+}
+.card-head {
+  gap: 9px;
+}
+.card-head img {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 3px;
+  image-rendering: pixelated;
+}
+.card-head h3 {
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 650;
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.tier {
+  font: 11px var(--mono);
+  color: var(--accent);
+}
+.value {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 9px 0 10px;
+  overflow-wrap: anywhere;
+}
+.value b {
+  color: #c6edd0;
+  font-variant-numeric: tabular-nums;
+}
+.tags {
+  gap: 3px 5px;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+.tag {
+  font-size: 10px;
+  color: var(--quiet);
+  border: 1px solid var(--hair);
+  border-radius: 4px;
+  line-height: 1.4;
+  padding: 1px 5px;
+}
+.tag.here {
+  color: var(--tag-color);
+  border-color: var(--tag-color);
+}
+.empty {
+  text-align: center;
+  padding: 46px 12px;
+}
+.empty h2 {
+  font-size: 17px;
+}
+.empty p {
+  color: var(--dim);
+  margin-top: 7px;
+}
+@media (max-width: 760px) {
+  .mast-inner {
+    flex-wrap: wrap;
+    gap: 9px 12px;
+    padding-block: 10px;
+  }
+  .mast-tools {
+    margin-left: auto;
+  }
+  .search {
+    order: 1;
+    flex-basis: 100%;
+    max-width: none;
+  }
+}
+@media (max-width: 600px) {
+  .search kbd {
+    display: none;
+  }
+  .filter-row {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  .pool-row {
+    flex-wrap: nowrap;
+    gap: 5px;
+  }
+  .filter-label {
+    width: 40px;
+  }
+  .choice span {
+    padding: 4px 7px;
+  }
+  .results {
+    font-size: 11px;
+  }
+  .group {
+    margin-top: 16px;
+  }
+}
+@media (max-width: 480px) {
+  #version {
+    display: none;
+  }
+  .brand {
+    gap: 7px;
+  }
+  .brand strong {
+    font-size: 16px;
+  }
+  .brand h1 {
+    font-size: 14px;
+    padding-left: 7px;
+  }
+}
+@media print {
+  .mast-tools,
+  .filters,
+  .search {
+    display: none;
+  }
+  .shell {
+    width: 100%;
+  }
+  .cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .effect-card {
+    break-inside: avoid;
+  }
+}
+
+    </style>
+  </head>
+  <body>
+    <header class="mast">
+      <div class="shell mast-inner">
+        <div class="brand">
+          <img id="brand-icon" width="32" height="32" alt="" /><strong>MCD2</strong>
+          <h1 data-i18n="title">词条总览</h1>
+        </div>
+        <form class="search" role="search" id="search">
+          <svg
+            aria-hidden="true"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m16 16 4.5 4.5" /></svg
+          ><label for="q" class="sr" data-i18n="search">搜索词条</label
+          ><input type="search" id="q" autocomplete="off" spellcheck="false" /><kbd id="shortcut"
+            >Ctrl K</kbd
+          >
+        </form>
+        <div class="mast-tools">
+          <span id="version"></span>
+          <div class="languages" role="group" aria-label="语言 / Language">
+            <button type="button" data-lang="zh" lang="zh-CN">中文</button
+            ><button type="button" data-lang="en" lang="en">EN</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="shell">
+      <div class="filters">
+        <div class="filter-row">
+          <span class="filter-label" id="rank-label" data-i18n="tier">阶数</span>
+          <div id="ranks" class="choices" role="radiogroup" aria-labelledby="rank-label"></div>
+          <span class="results" id="count" role="status"></span>
+        </div>
+        <div class="filter-row pool-row">
+          <span class="filter-label" id="pool-label" data-i18n="scope">范围</span>
+          <div id="pools" class="choices" role="radiogroup" aria-labelledby="pool-label"></div>
+        </div>
+      </div>
+      <div id="effect-list"></div>
+      <section class="empty" id="empty" hidden>
+        <h2 data-i18n="empty">没有匹配的词条</h2>
+        <p data-i18n="emptyHint">试试其他名称、效果，或将范围改为“全部”。</p>
+      </section>
+    </main>
+    <script type="application/json" id="glossary-data">
+      {"version":"1.1.3.0","brand":"data:image/webp;base64,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","categories":["offensive","defensive","utility"],"categoryLabels":{},"tags":[{"id":"slot:melee","zh":"近战","en":"Melee","slot":"melee","filter":"slot:melee","color":"#cdedfc"},{"id":"slot:ranged","zh":"远程","en":"Ranged","slot":"ranged","filter":"slot:ranged","color":"#fec2a2"},{"id":"slot:bow","zh":"弓","en":"Bow","slot":"bow","filter":"slot:ranged","color":"#b7c6a3"},{"id":"slot:crossbow","zh":"弩","en":"Crossbow","slot":"crossbow","filter":"slot:ranged","color":"#cc93ac"},{"id":"slot:armor","zh":"盔甲","en":"Armor","slot":"armor","filter":"slot:armor","color":"#98b4dc"},{"id":"slot:artifact","zh":"法器","en":"Artifact","slot":"artifact","filter":"slot:artifact","color":"#e5c7fa"},{"id":"slot:quiver","zh":"箭袋","en":"Quiver artifact","slot":"quiver","filter":"slot:artifact","color":"#c2b04e"},{"id":"Archetype.Fighter","zh":"战士","en":"Fighter","color":"#fd7573","family":"archetypes","filter":"Archetype.Fighter"},{"id":"Archetype.Ranger","zh":"游侠","en":"Ranger","color":"#47b873","family":"archetypes","filter":"Archetype.Ranger"},{"id":"Archetype.Mage","zh":"法师","en":"Mage","color":"#8098fe","family":"archetypes","filter":"Archetype.Mage"},{"id":"Archetype.Tank","zh":"坦克","en":"Tank","color":"#cf8837","family":"archetypes","filter":"Archetype.Tank"},{"id":"Archetype.Support","zh":"辅助","en":"Support","color":"#49e1b8","family":"archetypes","filter":"Archetype.Support"},{"id":"Archetype.Summoner","zh":"召唤","en":"Summoner","color":"#f5e9a6","family":"archetypes","filter":"Archetype.Summoner"},{"id":"Archetype.Trickster","zh":"诡术","en":"Trickster","color":"#c578e9","family":"archetypes","filter":"Archetype.Trickster"},{"id":"Archetype.Utility","zh":"通用","en":"Utility","color":"#869a99","family":"archetypes","filter":"Archetype.Utility"},{"id":"Elemental.Fire","zh":"火焰","en":"Fire","color":"#fe9e4a","family":"elements","filter":"Elemental.Fire"},{"id":"Elemental.Frost","zh":"冰霜","en":"Frost","color":"#6fdeff","family":"elements","filter":"Elemental.Frost"},{"id":"Elemental.Lightning","zh":"闪电","en":"Lightning","color":"#e2e005","family":"elements","filter":"Elemental.Lightning"},{"id":"Elemental.Poison","zh":"毒素","en":"Poison","color":"#82d944","family":"elements","filter":"Elemental.Poison"},{"id":"Elemental.Soul","zh":"灵魂","en":"Soul","color":"#fe93f1","family":"elements","filter":"Elemental.Soul"}],"filters":[{"id":"slot:melee","zh":"近战","en":"Melee","slot":"melee","filter":"slot:melee","color":"#cdedfc","slots":["melee"]},{"id":"slot:ranged","zh":"远程","en":"Ranged","slot":"ranged","filter":"slot:ranged","color":"#fec2a2","slots":["ranged","bow","crossbow"]},{"id":"slot:armor","zh":"盔甲","en":"Armor","slot":"armor","filter":"slot:armor","color":"#98b4dc","slots":["armor"]},{"id":"slot:artifact","zh":"法器","en":"Artifact","slot":"artifact","filter":"slot:artifact","color":"#e5c7fa","slots":["artifact","quiver"]},{"id":"Archetype.Fighter","zh":"战士","en":"Fighter","color":"#fd7573","family":"archetypes","filter":"Archetype.Fighter"},{"id":"Archetype.Ranger","zh":"游侠","en":"Ranger","color":"#47b873","family":"archetypes","filter":"Archetype.Ranger"},{"id":"Archetype.Mage","zh":"法师","en":"Mage","color":"#8098fe","family":"archetypes","filter":"Archetype.Mage"},{"id":"Archetype.Tank","zh":"坦克","en":"Tank","color":"#cf8837","family":"archetypes","filter":"Archetype.Tank"},{"id":"Archetype.Support","zh":"辅助","en":"Support","color":"#49e1b8","family":"archetypes","filter":"Archetype.Support"},{"id":"Archetype.Summoner","zh":"召唤","en":"Summoner","color":"#f5e9a6","family":"archetypes","filter":"Archetype.Summoner"},{"id":"Archetype.Trickster","zh":"诡术","en":"Trickster","color":"#c578e9","family":"archetypes","filter":"Archetype.Trickster"},{"id":"Archetype.Utility","zh":"通用","en":"Utility","color":"#869a99","family":"archetypes","filter":"Archetype.Utility"},{"id":"Elemental.Fire","zh":"火焰","en":"Fire","color":"#fe9e4a","family":"elements","filter":"Elemental.Fire"},{"id":"Elemental.Frost","zh":"冰霜","en":"Frost","color":"#6fdeff","family":"elements","filter":"Elemental.Frost"},{"id":"Elemental.Lightning","zh":"闪电","en":"Lightning","color":"#e2e005","family":"elements","filter":"Elemental.Lightning"},{"id":"Elemental.Poison","zh":"毒素","en":"Poison","color":"#82d944","family":"elements","filter":"Elemental.Poison"},{"id":"Elemental.Soul","zh":"灵魂","en":"Soul","color":"#fe93f1","family":"elements","filter":"Elemental.Soul"}],"slots":{"melee":{"zh":"近战","en":"Melee"},"ranged":{"zh":"远程","en":"Ranged"},"bow":{"zh":"弓","en":"Bow"},"crossbow":{"zh":"弩","en":"Crossbow"},"armor":{"zh":"盔甲","en":"Armor"},"artifact":{"zh":"法器","en":"Artifact"},"quiver":{"zh":"箭袋","en":"Quiver artifact"}},"ranks":["I","II","III"],"effects":[{"id":"SW.Effect.CriticalEdge","zh":"暴击锋刃","en":"Critical Edge","category":"offensive","icon":"data:image/webp;base64,UklGRpoAAABXRUJQVlA4TI0AAAAvP8APAB8w6wISwjT55fuoz39QYRLcxratKjf5wtfWcIfbGu5wW8MdToQ+iSP6PwFkx53ZrD4MKOuo0rkCfGCHXv5d9gCZ1UsHCRTpXLl0AA+vkEAVufKwfpCrShJ0rmohzZaGCkHqzjrNHlShbKnkdGZXSJB11KBO/QBAAnr5b1mHssPZbBZQ1lHDdgEA","tiers":[{"rank":"I","zh":"所有暴击伤害提高 10%。","en":"All critical hits deal 10% more damage.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"II","zh":"所有暴击伤害提高 20%。","en":"All critical hits deal 20% more damage.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"III","zh":"所有暴击伤害提高 30%。","en":"All critical hits deal 30% more damage.","pools":["Weapon"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.CriticalHit","zh":"暴击","en":"Critical Hit","category":"offensive","icon":"data:image/webp;base64,UklGRowAAABXRUJQVlA4TIAAAAAvP8APAB8w6wISwjT55fuoz39QYRIcBwBYRrWmM6fjKdzvVDN4R/Sfgdu2jdi927tfKHIMFQAAeAxV777ve+pdbytRAN5TvN5Gevc9nSMr9N0vWmz45owC8GZne4pvsrD1HVnZ/o8sJMvJfb+YfUByDf8GAAClyciysl53OQFCAg==","tiers":[{"rank":"I","zh":"暴击几率提高 5%。","en":"Increases chance of critical hits by 5%.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"II","zh":"暴击几率提高 10%。","en":"Increases chance of critical hits by 10%.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"III","zh":"暴击几率提高 15%。","en":"Increases chance of critical hits by 15%.","pools":["Weapon"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.Power","zh":"冲击","en":"Impact","category":"offensive","icon":"data:image/webp;base64,UklGRpYAAABXRUJQVlA4TIkAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitIBRG0mOmsJQaApFofmT2r18G54R/Z8Ab0GdhFFVV10YVytJMLJWgtFIvUTd0UAvqUoAbBiJLUlVUlKVNFf/D3qQVCXjsUFq7KQqaWAkNl3bThLJl/+vD7YtJTCmY5BgZDbdkdljAAA=","tiers":[{"rank":"I","zh":"远程攻击造成的伤害提高 10%。","en":"Ranged attacks deal 10% more damage.","pools":["Weapon"],"slots":["ranged"]},{"rank":"II","zh":"远程攻击造成的伤害提高 20%。","en":"Ranged attacks deal 20% more damage.","pools":["Weapon"],"slots":["ranged"]},{"rank":"III","zh":"远程攻击造成的伤害提高 30%。","en":"Ranged attacks deal 30% more damage.","pools":["Weapon"],"slots":["ranged"]}]},{"id":"SW.Effect.Knockback","zh":"击退","en":"Knockback","category":"offensive","icon":"data:image/webp;base64,UklGRnwAAABXRUJQVlA4TG8AAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitIBR20iSmkJRKApFYfiT6mv26JlvRP8ngOevcIfCGYBdwE3tnQSwjcA9+UzKFE7gHUAqJAHH4gxmq2g2FbkWOVk+ka8onMSryY3/d+wA","tiers":[{"rank":"I","zh":"攻击造成的击退效果提高 15%。","en":"Attacks do 15% more knockback.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"II","zh":"攻击造成的击退效果提高 20%。","en":"Attacks do 20% more knockback.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"III","zh":"攻击造成的击退效果提高 30%。","en":"Attacks do 30% more knockback.","pools":["Weapon"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.Desperation","zh":"不屈","en":"Persistence","category":"offensive","icon":"data:image/webp;base64,UklGRpIAAABXRUJQVlA4TIUAAAAvP8APAB8w/wISwjT55fv8z39QYRLc2LatJrdJgt+pxbA3OtxlardOi3NZ1BH9nwD8xyIgGomiKNqIgAiITrc+EG9E2EDXw6EhbPIEujYEkCcOeZIngAijWSdPgDzJE4t8OFx38iRP8mQWw2FisI51rGM4XMc61mEwO9zGOtaH247Lkz8IAA==","tiers":[{"rank":"I","zh":"额外造成相当于玩家总损失生命值 10% 的伤害。","en":"Increases damage dealt by 10% of player's total missing health.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"II","zh":"额外造成相当于玩家总损失生命值 15% 的伤害。","en":"Increases damage dealt by 15% of player's total missing health.","pools":["Weapon"],"slots":["melee","ranged"]},{"rank":"III","zh":"额外造成相当于玩家总损失生命值 20% 的伤害。","en":"Increases damage dealt by 20% of player's total missing health.","pools":["Weapon"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.Sharpness","zh":"锋利","en":"Sharpness","category":"offensive","icon":"data:image/webp;base64,UklGRnAAAABXRUJQVlA4TGMAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitIBR20iSikJRaApNIfxJzey9pf5G9H8C6o/tyUE2AG8T+dYsK0i7ujkD2HX7lOrB6ehkqrW7Hv4/KV13Nm2TfRIA","tiers":[{"rank":"I","zh":"近战攻击造成的伤害提高 10%。","en":"Melee attacks deal 10% more damage.","pools":["Weapon"],"slots":["melee"]},{"rank":"II","zh":"近战攻击造成的伤害提高 20%。","en":"Melee attacks deal 20% more damage.","pools":["Weapon"],"slots":["melee"]},{"rank":"III","zh":"近战攻击造成的伤害提高 30%。","en":"Melee attacks deal 30% more damage.","pools":["Weapon"],"slots":["melee"]}]},{"id":"SW.Effect.Cooldown","zh":"冷却时间","en":"Cooldown","category":"utility","icon":"data:image/webp;base64,UklGRo4AAABXRUJQVlA4TIIAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEQFSJEmOpKKQFIpCUnD+pFaeGPGM6P8E9D5md7eFI2IX+pSjYZe+zbHs0o85IhKOLJlJOC6SmYSjaklmkqNhl4eWZCbp2/9fy66nLcnxtOyb9Iv/320L","tiers":[{"rank":"I","zh":"法器冷却时间缩短 10%。","en":"Reduces artifact cooldown time by 10%.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]},{"rank":"II","zh":"法器冷却时间缩短 15%。","en":"Reduces artifact cooldown time by 15%.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]},{"rank":"III","zh":"法器冷却时间缩短 20%。","en":"Reduces artifact cooldown time by 20%.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.FrostFocus","zh":"冰霜法师","en":"Cryomancer","category":"offensive","icon":"data:image/webp;base64,UklGRqwAAABXRUJQVlA4TKAAAAAvP8APACcgFEBjLgH0M0ghG0lwMKuwNkvy3RFp2wYVjM7O+OnnP0T3yemFAEVtG0lDYSgMhaUQ/qD2Pqb7jui/ArdtlBwzbbs/WB4XMcM9P/s5GHeZn90czDIK7OwA5vvJzygDEAFjl9k+3BXoB0A/fyn99NDLpgpmUR3M6iPMdJhKRef6NgX+cO/qcvcDvVO3O+p2V/7fWbqVnJqlJ40z","tiers":[{"rank":"I","zh":"冰霜攻击造成的伤害提高 10%。","en":"Frost attacks deal 10% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Lightning","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]},{"rank":"II","zh":"冰霜攻击造成的伤害提高 15%。","en":"Frost attacks deal 15% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Lightning","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]},{"rank":"III","zh":"冰霜攻击造成的伤害提高 20%。","en":"Frost attacks deal 20% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Lightning","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.LightningFocus","zh":"闪电法师","en":"Electromancer","category":"offensive","icon":"data:image/webp;base64,UklGRpYAAABXRUJQVlA4TIkAAAAvP8APAB9AEECiVe+vs8IaAgHCmg//GwQERf6PNv/xP1Ih4LZtJElqe/LbvbuK7r5y5HR+7e6/nUBE/yeAW1YuKtvIrMpNZDblFjKapmkyIDeoBLRB5f1YHRHxZu/9GO0YEe8+I1YbMeLN/ltVAmjySuX9kAG0ItMAGUAGmRbIrMo0oXJRSZtrAQA=","tiers":[{"rank":"I","zh":"闪电攻击造成的伤害提高 10%。","en":"Lightning attacks deal 10% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Frost","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]},{"rank":"II","zh":"闪电攻击造成的伤害提高 15%。","en":"Lightning attacks deal 15% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Frost","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]},{"rank":"III","zh":"闪电攻击造成的伤害提高 20%。","en":"Lightning attacks deal 20% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Frost","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.FireFocus","zh":"火焰法师","en":"Pyromancer","category":"offensive","icon":"data:image/webp;base64,UklGRqwAAABXRUJQVlA4TKAAAAAvP8APAC9AEEASQDoTrL/TGgratmHgFMXb4c9omtIASBgSif8vpQ2d//j/HWWDBimFQVEjSREWsLAWxgIWxr8XjoGQmX9E/xW4baPkaNsx/6F8HKDHkAeZPQ7ybQRe/ByhGsUYGQBaUux5CWhpR58SX16lPt1Z1Z83KZt+cam0zaUBnEIT7pSABKrIU1DSOR5/7gKppQzUKNLGEf/v2rgC","tiers":[{"rank":"I","zh":"火焰攻击造成的伤害提高 10%。","en":"Fire attacks deal 10% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Frost","Elemental.Lightning","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]},{"rank":"II","zh":"火焰攻击造成的伤害提高 15%。","en":"Fire attacks deal 15% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Frost","Elemental.Lightning","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]},{"rank":"III","zh":"火焰攻击造成的伤害提高 20%。","en":"Fire attacks deal 20% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Frost","Elemental.Lightning","Elemental.Poison","Elemental.Soul"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.Vestige","zh":"巫师","en":"Sorcerer","category":"offensive","icon":"data:image/webp;base64,UklGRpQAAABXRUJQVlA4TIgAAAAvP8APACcgECD4b9BqgyDbZmqb19kvECD4b9Bq/oNzpiK0wFEbSZKUFJpCUggKwZ/U3DNb+47o/wT0T+RwKli7oHMlyVqgrU7Wai9PAGt3qlbZ1ala7a5OBG3r6Ym0h6A6S9KLoDoF7MEetC2oTgEJJC3sJS2oTpBstpBAAgkkoDrBkzBdAr8P","tiers":[{"rank":"I","zh":"法器攻击造成的伤害提高 10%。","en":"Artifact attacks deal 10% more damage.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]},{"rank":"II","zh":"法器攻击造成的伤害提高 15%。","en":"Artifact attacks deal 15% more damage.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]},{"rank":"III","zh":"法器攻击造成的伤害提高 20%。","en":"Artifact attacks deal 20% more damage.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.SoulFocus","zh":"灵魂法师","en":"Soulmancer","category":"offensive","icon":"data:image/webp;base64,UklGRqQAAABXRUJQVlA4TJgAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEcFRG0mS1BSaQlAICsmf1FTX7NH1j+j/BHjPpJPMA76EWcAPwhxgmawyeSjMkHhczUqTCbpr6VraeTvBeTKdbO9q76lglzBL0jmfkgkUqqRKKrC8n0J1foDN+ymoVqrgy/tp0kn84P2ep89/BA==","tiers":[{"rank":"I","zh":"灵魂攻击造成的伤害提高 10%。","en":"Soul attacks deal 10% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Frost","Elemental.Lightning","Elemental.Poison"],"slots":["armor","artifact"]},{"rank":"II","zh":"灵魂攻击造成的伤害提高 15%。","en":"Soul attacks deal 15% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Frost","Elemental.Lightning","Elemental.Poison"],"slots":["armor","artifact"]},{"rank":"III","zh":"灵魂攻击造成的伤害提高 20%。","en":"Soul attacks deal 20% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Frost","Elemental.Lightning","Elemental.Poison"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.SoulMax","zh":"灵性","en":"Spiritual","category":"utility","icon":"data:image/webp;base64,UklGRqwAAABXRUJQVlA4TKAAAAAvP8APAB8gECBqTHnWZENN2wYMjnTwp1YOfQQkxCRH/F9DzX+813gB4DaSJEWaJ3lde2p5XHv5qF17OmplpMeJ0yP6PwHVEiqCVaUIJpEDPeVAzxRyAOgdAHrm6L333nvvPQsA9A4AaXrfme17T1TMzK5ZKjl213Ite/SsckQUM7NrRBaq2LXYlVquKGYXpakqUREUq5f/JlaVKFaVmOPX","tiers":[{"rank":"I","zh":"灵魂容量提高 25%。","en":"Increases Soul capacity by 25%.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]},{"rank":"II","zh":"灵魂容量提高 30%。","en":"Increases Soul capacity by 30%.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]},{"rank":"III","zh":"灵魂容量提高 35%。","en":"Increases Soul capacity by 35%.","pools":["Archetype.Mage","Artifact"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.PoisonFocus","zh":"剧毒法师","en":"Venomancer","category":"offensive","icon":"data:image/webp;base64,UklGRrIAAABXRUJQVlA4TKYAAAAvP8APACdAkG2DNY4ZTP0k1yDMNgIY0mzmL3CvI5O2eUsd1L/KXZv/+B/QZsoCRpEkRcJCWcBCWyj/poA9Z/4R/Z8A6tQrST/KTe1FIVFNdqB9KCQKoMkOtIcEQGEMAD1B0sF+gTnnvHa1vkQXTUC1G0hUE9AxQLu5qjBnT6oAqjxaU3LSMUC5mHQAeoJryrY+0AVUOSoX6wNdrio364PkSsKD9f0W","tiers":[{"rank":"I","zh":"毒素攻击造成的伤害提高 10%。","en":"Poison attacks deal 10% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Frost","Elemental.Lightning","Elemental.Soul"],"slots":["armor","artifact"]},{"rank":"II","zh":"毒素攻击造成的伤害提高 15%。","en":"Poison attacks deal 15% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Lightning"],"slots":["armor","artifact"]},{"rank":"III","zh":"毒素攻击造成的伤害提高 20%。","en":"Poison attacks deal 20% more damage.","pools":["Archetype.Mage","Artifact","Elemental.Fire","Elemental.Lightning"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.Committed","zh":"赏金猎人","en":"Bounty Hunter","category":"offensive","icon":"data:image/webp;base64,UklGRoYAAABXRUJQVlA4THkAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitMBRG0mS1BSCQlEICs2fVPUxM7v5j+j/BNT/dJkNVBO5BfAyx9wCtLHMogrgYSbVWqYZo/XaJqrLZG5TqUKbM80eMvUGMLdJzgHcpjhXbfX4/6tymezzAA==","tiers":[{"rank":"I","zh":"对受伤敌人造成的伤害提高 20%。","en":"Deal 20% more damage to wounded enemies.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee","ranged"]},{"rank":"II","zh":"对受伤敌人造成的伤害提高 25%。","en":"Deal 25% more damage to wounded enemies.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee","ranged"]},{"rank":"III","zh":"对受伤敌人造成的伤害提高 30%。","en":"Deal 30% more damage to wounded enemies.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.Duelist","zh":"决斗者","en":"Duelist","category":"offensive","icon":"data:image/webp;base64,UklGRpwAAABXRUJQVlA4TJAAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitIBRALRxYiEWsICF+BfVkuxk+0b0X5Hbto2StDp19xP4h0iJiZDwQqWbI13USBeOpCpXTPZ+zova+7kmgBv7HLhilkwvIshJ9vAenBFguhsnyPkv9AF8IHV8FR2hJDxo93Ei9HV4EHH+n1rw+QE=","tiers":[{"rank":"I","zh":"近战攻击对主要目标造成的伤害提高 20%。","en":"Melee attacks deal 20% more damage to primary targets.","pools":["Archetype.Fighter"],"slots":["melee"]},{"rank":"II","zh":"近战攻击对主要目标造成的伤害提高 25%。","en":"Melee attacks deal 25% more damage to primary targets.","pools":["Archetype.Fighter"],"slots":["melee"]},{"rank":"III","zh":"近战攻击对主要目标造成的伤害提高 30%。","en":"Melee attacks deal 30% more damage to primary targets.","pools":["Archetype.Fighter"],"slots":["melee"]}]},{"id":"SW.Effect.Finesse","zh":"灵巧","en":"Finesse","category":"offensive","icon":"data:image/webp;base64,UklGRogAAABXRUJQVlA4THsAAAAvP8APAB8gECD4b9BqQyBAWFMujUCA4L9Bq/kP5kxVgdvYtlVlx1+r8+o+DhtrjdjdNYzo/wT49gOgORcAzfOpAc1yt5sHNJ59sgC4BDTPpwY0LucGNJ59tgAuQfMKGrDY7Xa7lMazz2fQ1FnWCxo/lp549f/FuueLPRAA","tiers":[{"rank":"I","zh":"跳跃或翻滚时，攻击伤害提高 15%。","en":"Increases attack damage by 15% when jumping or rolling.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee"]},{"rank":"II","zh":"跳跃或翻滚时，攻击伤害提高 25%。","en":"Increases attack damage by 25% when jumping or rolling.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee"]},{"rank":"III","zh":"跳跃或翻滚时，攻击伤害提高 35%。","en":"Increases attack damage by 35% when jumping or rolling.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee"]}]},{"id":"SW.Effect.Precision","zh":"精准","en":"Precision","category":"offensive","icon":"data:image/webp;base64,UklGRn4AAABXRUJQVlA4THEAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitEBNG0nOUngKR2EpLH9QF767UEb0X5Hbto10zep8hN1SEkWyJwCLQDekHJ2D8wT9qPPULl2QMu9jP+DqYwfm2Pf+967/u+v+7wzw7x5RAwA=","tiers":[{"rank":"I","zh":"近战攻击的暴击几率提高 10%。","en":"Increases chance of critical hits with melee attacks by 10%.","pools":["Archetype.Fighter"],"slots":["melee"]},{"rank":"II","zh":"近战攻击的暴击几率提高 15%。","en":"Increases chance of critical hits with melee attacks by 15%.","pools":["Archetype.Fighter"],"slots":["melee"]},{"rank":"III","zh":"近战攻击的暴击几率提高 20%。","en":"Increases chance of critical hits with melee attacks by 20%.","pools":["Archetype.Fighter"],"slots":["melee"]}]},{"id":"SW.Effect.ProjectileProtection","zh":"弹射物防护","en":"Projectile Protection","category":"defensive","icon":"data:image/webp;base64,UklGRo4AAABXRUJQVlA4TIIAAAAvP8APACdAkG0z/5HN5Q7XINK2cT9BkzV0dEyYbfSbP8cchnII5zD/8R4z5NAHihpJUs7CWTgLa2H9i+KjhWdE/9m4beSIajZVe+ER2MFgq2iGW0TTLDKgIpPPR78Xi4pEjDb6XyL3Tu29F3FYA3k4hr2BNfrf3sAaRYRo/ZG/V0wI","tiers":[{"rank":"I","zh":"受到远程攻击的伤害降低 10%。","en":"Take 10% less damage from ranged attacks.","pools":["Archetype.Fighter","Archetype.Ranger","Archetype.Tank"],"slots":["armor"]},{"rank":"II","zh":"受到远程攻击的伤害降低 15%。","en":"Take 15% less damage from ranged attacks.","pools":["Archetype.Fighter","Archetype.Ranger","Archetype.Tank"],"slots":["armor"]},{"rank":"III","zh":"受到远程攻击的伤害降低 20%。","en":"Take 20% less damage from ranged attacks.","pools":["Archetype.Fighter","Archetype.Ranger","Archetype.Tank"],"slots":["armor"]}]},{"id":"SW.Effect.Protection","zh":"防护","en":"Protection","category":"defensive","icon":"data:image/webp;base64,UklGRnAAAABXRUJQVlA4TGQAAAAvP8APACdAmG0kMZd9J3X8p0GkbcOHJmE6r/gyFLKNAMHM4kDOn+NL5j/+LxHMYAZGkSQpagttoSyshfWvivngE9H/CfAd0ngvarifmJRC8n8HUokEe7EBVAjgyvXZVLrh+o4d","tiers":[{"rank":"I","zh":"受到的伤害降低 10%。","en":"Take 10% less damage.","pools":["Archetype.Fighter","Archetype.Tank"],"slots":["armor"]},{"rank":"II","zh":"受到的伤害降低 15%。","en":"Take 15% less damage.","pools":["Archetype.Fighter","Archetype.Tank"],"slots":["armor"]},{"rank":"III","zh":"受到的伤害降低 20%。","en":"Take 20% less damage.","pools":["Archetype.Fighter","Archetype.Tank"],"slots":["armor"]}]},{"id":"SW.Effect.MasterStrike","zh":"强力","en":"Strength","category":"offensive","icon":"data:image/webp;base64,UklGRnwAAABXRUJQVlA4TG8AAAAvP8APACcgECD4b9BqgyDbZmqb19kvECD4b9Bq/oNzpiK0gFEkSYrKwloYC2Vh/Zvig4VnRP8nIM6S6soiNB7+P1iV1rSmK6JzLdqKSCnnlCJaug4YgZVooT1a6BlBDXqgBmuAWbCislZfQX74ggAA","tiers":[{"rank":"I","zh":"近战武器的暴击伤害提高 15%。","en":"Critical hits with melee weapons deal 15% more damage.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee"]},{"rank":"II","zh":"近战武器的暴击伤害提高 20%。","en":"Critical hits with melee weapons deal 20% more damage.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee"]},{"rank":"III","zh":"近战武器的暴击伤害提高 25%。","en":"Critical hits with melee weapons deal 25% more damage.","pools":["Archetype.Fighter","Archetype.Trickster"],"slots":["melee"]}]},{"id":"SW.Effect.RapidStrike","zh":"迅捷","en":"Swiftness","category":"offensive","icon":"data:image/webp;base64,UklGRoIAAABXRUJQVlA4THUAAAAvP8APACegkG0EaBL3CB/tCRFk26hMZfO4P8YJJG2WYqzwyz7F/Mf/UoQuY+AoYCRFKgtlIRbKQvk3tXgw8Izo/wR4L0ttkoxKanNzPNKhPQCMKknABhhTmyTgF0eRJGDDuODw5r/TzVEdW079+v+T/OH12bQA","tiers":[{"rank":"I","zh":"近战攻击速度提高 10%。","en":"Increases melee attack speed by 10%.","pools":["Archetype.Fighter"],"slots":["armor"]},{"rank":"II","zh":"近战攻击速度提高 15%。","en":"Increases melee attack speed by 15%.","pools":["Archetype.Fighter"],"slots":["armor"]},{"rank":"III","zh":"近战攻击速度提高 20%。","en":"Increases melee attack speed by 20%.","pools":["Archetype.Fighter"],"slots":["armor"]}]},{"id":"SW.Effect.Vanguard","zh":"先锋","en":"Vanguard","category":"offensive","icon":"data:image/webp;base64,UklGRpwAAABXRUJQVlA4TI8AAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitBgctZEkSUOhKAyFplD8SU3P3qX9piP6PwHnP1jbZ2xn4RG3szR2MEtCW0+2kgd/X7JwJCFJ4HxyguPJf4xHmKUkbWEH7UyZ49oWjkCr7RRJK7S1bYWWB3+dbcmD9HaGckkKO0guZQbyYmb4egA=","tiers":[{"rank":"I","zh":"对满血敌人造成的伤害提高 20%。","en":"Deal 20% more damage to enemies who are at full health.","pools":["Archetype.Fighter"],"slots":["melee","ranged"]},{"rank":"II","zh":"对满血敌人造成的伤害提高 35%。","en":"Deal 35% more damage to enemies who are at full health.","pools":["Archetype.Fighter"],"slots":["melee","ranged"]},{"rank":"III","zh":"对满血敌人造成的伤害提高 50%。","en":"Deal 50% more damage to enemies who are at full health.","pools":["Archetype.Fighter"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.EagleEye","zh":"瞄准","en":"Aim","category":"offensive","icon":"data:image/webp;base64,UklGRpIAAABXRUJQVlA4TIYAAAAvP8APADegoI0U5gcSQD7+liEFbdswpVZgxfIGdAratmH6IFRjP37TUMx/4PHxiiNR4Zg7rQVFbRtJpTAUhsJSWAqlsPwxzPHbOZ4R/Vfgto3S7JjxEbpFSCTImgKYACqKdF0jzqCeADJWjpEOJEZFvYQY5/yv+vte+d7Vf3fV/50G/t1Vog==","tiers":[{"rank":"I","zh":"远程攻击的暴击几率提高 10%。","en":"Increases chance of critical hits from ranged attacks by 10%.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]},{"rank":"II","zh":"远程攻击的暴击几率提高 15%。","en":"Increases chance of critical hits from ranged attacks by 15%.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]},{"rank":"III","zh":"远程攻击的暴击几率提高 20%。","en":"Increases chance of critical hits from ranged attacks by 20%.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]}]},{"id":"SW.Effect.ArrowBurst","zh":"制弓师","en":"Bowyer","category":"utility","icon":"data:image/webp;base64,UklGRpAAAABXRUJQVlA4TIMAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noERkYRZIUBgtYwMJZOP+qqLwCyXM7ov8TUN+wAZQGcJapTbupTefhCd+Lqe2Y2lloKxRoCQXAD9Z2lLajAI4wsjKyS1ZGzpM8Sc5Dwo6Es9CgQIMC4K2+IgA=","tiers":[{"rank":"I","zh":"箭矢恢复时有 20% 几率额外获得一支箭。","en":"Grants a 20% chance to gain an additional arrow when ammo is regained.","pools":["Archetype.Ranger"],"slots":["armor"]},{"rank":"II","zh":"箭矢恢复时有 25% 几率额外获得一支箭。","en":"Grants a 25% chance to gain an additional arrow when ammo is regained.","pools":["Archetype.Ranger"],"slots":["armor"]},{"rank":"III","zh":"箭矢恢复时有 30% 几率额外获得一支箭。","en":"Grants a 30% chance to gain an additional arrow when ammo is regained.","pools":["Archetype.Ranger"],"slots":["armor"]}]},{"id":"SW.Effect.Sidestep","zh":"躲避","en":"Evasion","category":"utility","icon":"data:image/webp;base64,UklGRm4AAABXRUJQVlA4TGEAAAAvP8APAB8gJCBmqU7Z74aQgOiSBf5vs0IogMBkk79GAq35j68JkAPTAADSJE4kc53ra2TXucaI/ity27aRbtntM+D/EQtflqIrEEN/He/xbgTciJ/Prf7dCn8ZKyXX8H1CAA==","tiers":[{"rank":"I","zh":"有 10% 的几率躲避近战伤害。","en":"Grants a 10% chance to evade melee damage.","pools":["Archetype.Ranger","Archetype.Trickster"],"slots":["armor"]},{"rank":"II","zh":"有 15% 的几率躲避近战伤害。","en":"Grants a 15% chance to evade melee damage.","pools":["Archetype.Ranger","Archetype.Trickster"],"slots":["armor"]},{"rank":"III","zh":"有 20% 的几率躲避近战伤害。","en":"Grants a 20% chance to evade melee damage.","pools":["Archetype.Ranger","Archetype.Trickster"],"slots":["armor"]}]},{"id":"SW.Effect.Reconstruction","zh":"制箭师","en":"Fletcher","category":"utility","icon":"data:image/webp;base64,UklGRpYAAABXRUJQVlA4TIoAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEcFRG0mSlBSaQlIICsGf1NyzW7vfiP5PAP/gWrAWtNCCgs6y3Ww3238K1mK3ZVe5+P3aX8LT86jmpOo8iWqrmkyRtAm0R8k028kgYfdIk1mOz2xn0pzUecCL3Pj9PhA=","tiers":[{"rank":"I","zh":"远程弹药冷却时间缩短 15%。","en":"Reduces ranged ammo cooldown time by 15%.","pools":["Archetype.Ranger"],"slots":["armor"]},{"rank":"II","zh":"远程弹药冷却时间缩短 20%。","en":"Reduces ranged ammo cooldown time by 20%.","pools":["Archetype.Ranger"],"slots":["armor"]},{"rank":"III","zh":"远程弹药冷却时间缩短 25%。","en":"Reduces ranged ammo cooldown time by 25%.","pools":["Archetype.Ranger"],"slots":["armor"]}]},{"id":"SW.Effect.MasterMarksman","zh":"精准射手","en":"Marksman","category":"offensive","icon":"data:image/webp;base64,UklGRoYAAABXRUJQVlA4THoAAAAvP8APACcgECD4b9BqgyDbZmqb19kvECD4b9Bq/oNzpiK0GBhFkqRoLZyFsbAW1r8pOF54VkX0fwJiPxfHpuPj4T/LJkAVdCSpGSSgqDSDQx0DlGbVV610BKkZnIOgghH0r13/PzgTN/8ftOLBP8s3jghAAUZ1dTQfBg==","tiers":[{"rank":"I","zh":"远程武器的暴击伤害提高 15%。","en":"Critical hits with ranged weapons deal 15% more damage.","pools":["Archetype.Ranger","Archetype.Trickster"],"slots":["ranged","quiver"]},{"rank":"II","zh":"远程武器的暴击伤害提高 20%。","en":"Critical hits with ranged weapons deal 20% more damage.","pools":["Archetype.Ranger","Archetype.Trickster"],"slots":["ranged","quiver"]},{"rank":"III","zh":"远程武器的暴击伤害提高 25%。","en":"Critical hits with ranged weapons deal 25% more damage.","pools":["Archetype.Ranger","Archetype.Trickster"],"slots":["ranged","quiver"]}]},{"id":"SW.Effect.AmmoCapacity","zh":"箭袋","en":"Quiver","category":"utility","icon":"data:image/webp;base64,UklGRnoAAABXRUJQVlA4TG4AAAAvP8APACdAkG1Dswxg/ghnugZhttFvDgOc0umeQrYRIKQjOX+Xf/7j/yHtjBDAKJIkRWOhLIyFstD+TR0zvCL6PwG+wzDoHlSNVV0LDLoHVVp1bfC0dKADHXPh+Smogiq44vuVDJJBcjUJKyY/CQ==","tiers":[{"rank":"I","zh":"箭矢携带量增加 10%。","en":"Carry 10% more ammo.","pools":["Archetype.Ranger"],"slots":["quiver"]},{"rank":"II","zh":"箭矢携带量增加 15%。","en":"Carry 15% more ammo.","pools":["Archetype.Ranger"],"slots":["quiver"]},{"rank":"III","zh":"箭矢携带量增加 20%。","en":"Carry 20% more ammo.","pools":["Archetype.Ranger"],"slots":["quiver"]}]},{"id":"SW.Effect.MultiShot","zh":"游侠","en":"Ranger","category":"offensive","icon":"data:image/webp;base64,UklGRpQAAABXRUJQVlA4TIcAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitEBR20bSUlgKpVAKyx/UzOw9xzei/wrctlGy7ZjxD/Aj3EoA/InXHQjG0b6EoYusxzOMkPTPItSWMocA+GdbBNhWC8PFffTOfWnSPxenYhqncx7cOtI/Cbw61/+DQ9x9P+X/uwAA","tiers":[{"rank":"I","zh":"有 20% 的几率发射额外弹射物。","en":"Grants a 20% chance to fire additional projectiles.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]},{"rank":"II","zh":"有 30% 的几率发射额外弹射物。","en":"Grants a 30% chance to fire additional projectiles.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]},{"rank":"III","zh":"有 40% 的几率发射额外弹射物。","en":"Grants a 40% chance to fire additional projectiles.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]}]},{"id":"SW.Effect.Supercharge","zh":"神射手","en":"Sharpshooter","category":"offensive","icon":"data:image/webp;base64,UklGRo4AAABXRUJQVlA4TIIAAAAvP8APACcgECD4b9BqgyDbZmqb19kvECD4b9Bq/oNzpiK0AFIjSZKkoOAUnEJRCP6kKufczdU+I/o/Af4PA+x3T3nynLOEXqoZHROf3EAhSXyy3eROwDHZKEkUrjZR2MYRLmh3SR4pXPcuqklHaHfSBKBl3Ehbntwl6cjTm5zjh/8w","tiers":[{"rank":"I","zh":"蓄力远程攻击造成的伤害提高 30%。","en":"Charged ranged attacks deal 30% more damage.","pools":["Archetype.Ranger"],"slots":["bow","quiver"]},{"rank":"II","zh":"蓄力远程攻击造成的伤害提高 35%。","en":"Charged ranged attacks deal 35% more damage.","pools":["Archetype.Ranger"],"slots":["bow","quiver"]},{"rank":"III","zh":"蓄力远程攻击造成的伤害提高 40%。","en":"Charged ranged attacks deal 40% more damage.","pools":["Archetype.Ranger"],"slots":["bow","quiver"]}]},{"id":"SW.Effect.Sniper","zh":"狙击手","en":"Sniper","category":"offensive","icon":"data:image/webp;base64,UklGRpAAAABXRUJQVlA4TIMAAAAvP8APAB8w6wISwjT55fuoz39QYRJcR7JtWvvnMjpbqdmKzs/G3gFE9F+R27YNfU/S+Qh4ipQ7DDyFrClEJOm6nu+jo+s6g2S6vCREMzr6FOr5jidkIBJBmnDoT+2k3GGeeur/1+yXy2Vs9vGl3v/hrxt33wmcO4F7h3/vKbw78v8CAAA=","tiers":[{"rank":"I","zh":"远距离时，远程攻击造成的伤害提高 25%。","en":"Ranged attacks deal 25% more damage from far away.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]},{"rank":"II","zh":"远距离时，远程攻击造成的伤害提高 50%。","en":"Ranged attacks deal 50% more damage from far away.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]},{"rank":"III","zh":"远距离时，远程攻击造成的伤害提高 75%。","en":"Ranged attacks deal 75% more damage from far away.","pools":["Archetype.Ranger"],"slots":["ranged","quiver"]}]},{"id":"SW.Effect.SpeedBoost","zh":"速度","en":"Speed","category":"utility","icon":"data:image/webp;base64,UklGRnwAAABXRUJQVlA4TG8AAAAvP8APAB8gICGckf8L3RAIEB0CFZqSISAhJlni/xip+Y8/JSUA28i2ldwYe62h/bm96n6Mu/3/IY3o/wTwbzYQS9VOhNiIJWmnaSJAoq0hCG5UyNJOEwlCzIeva6etTMwtAWKiWB7mdpok2xrS/VUA","tiers":[{"rank":"I","zh":"移动速度提高 5%。","en":"Increases movement speed by 5%.","pools":["Archetype.Ranger"],"slots":["armor"]},{"rank":"II","zh":"移动速度提高 10%。","en":"Increases movement speed by 10%.","pools":["Archetype.Ranger"],"slots":["armor"]},{"rank":"III","zh":"移动速度提高 15%。","en":"Increases movement speed by 15%.","pools":["Archetype.Ranger"],"slots":["armor"]}]},{"id":"SW.Effect.ElementalProtection","zh":"元素防护","en":"Elemental Protection","category":"defensive","icon":"data:image/webp;base64,UklGRqAAAABXRUJQVlA4TJMAAAAvP8APAB8gJCC8Uv0/5YaQgOi2WmeWFQIBIkavJEke5j/+lJQAriPZNq3zcxmdrdRsRYdnXq8EIvqvyG3bhklu3eMT78PhqxsxAAwbrSH6qqoqK62qqrrhWJSQQlkUIUIKZKXzo4CxqOCPF1IQnyJzRBjOB983/Ny37nHoQdR5zp+BCjHPeYGow/ILQ+D//ftovAEA","tiers":[{"rank":"I","zh":"受到的元素攻击伤害降低 10%。","en":"Reduces damage taken from elemental attacks by 10%.","pools":["Archetype.Mage"],"slots":["armor"]},{"rank":"II","zh":"受到的元素攻击伤害降低 15%。","en":"Reduces damage taken from elemental attacks by 15%.","pools":["Archetype.Mage"],"slots":["armor"]},{"rank":"III","zh":"受到的元素攻击伤害降低 20%。","en":"Reduces damage taken from elemental attacks by 20%.","pools":["Archetype.Mage"],"slots":["armor"]}]},{"id":"SW.Effect.SoulGatherMultiply","zh":"死神","en":"Reaper","category":"utility","icon":"data:image/webp;base64,UklGRqIAAABXRUJQVlA4TJYAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEUFR20bSUBgKQ6EUyh/UbrV39x3RfwVu2yjZdsz4B7whXJT3GYeqenqEpus4SBdGdcf1qpyIJkBnPAY3pE8R0o9RaBTwAlDITO0AABxJEW9IJ9bOBTk6N6+zfy8c8H93fvDu+v879v/uEwI=","tiers":[{"rank":"I","zh":"获得的灵魂增加 25%。","en":"Increases souls gained by 25%.","pools":["Archetype.Mage","Archetype.Summoner","Archetype.Support"],"slots":["melee","ranged"]},{"rank":"II","zh":"获得的灵魂增加 35%。","en":"Increases souls gained by 35%.","pools":["Archetype.Mage","Archetype.Summoner","Archetype.Support"],"slots":["melee","ranged"]},{"rank":"III","zh":"获得的灵魂增加 45%。","en":"Increases souls gained by 45%.","pools":["Archetype.Mage","Archetype.Summoner","Archetype.Support"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.SweepingEdge","zh":"斗士","en":"Brawler","category":"offensive","icon":"data:image/webp;base64,UklGRnwAAABXRUJQVlA4THAAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitBgYRZKkaCyshbMwFta/KYZbeHZF9H8Cvtcc2BtEAhHYnQn249Sle3GkGtidZXfi1Dkm2JFVwp5SkKT9SAAlsmrcQ2qiuJs0yavz/x06","tiers":[{"rank":"I","zh":"近战攻击对次要目标造成的伤害提高 20%。","en":"Melee attacks deal 20% more damage to secondary targets.","pools":["Archetype.Tank"],"slots":["melee"]},{"rank":"II","zh":"近战攻击对次要目标造成的伤害提高 30%。","en":"Melee attacks deal 30% more damage to secondary targets.","pools":["Archetype.Tank"],"slots":["melee"]},{"rank":"III","zh":"近战攻击对次要目标造成的伤害提高 40%。","en":"Melee attacks deal 40% more damage to secondary targets.","pools":["Archetype.Tank"],"slots":["melee"]}]},{"id":"SW.Effect.Reeling","zh":"冲力","en":"Momentum","category":"offensive","icon":"data:image/webp;base64,UklGRmYAAABXRUJQVlA4TFkAAAAvP8APAB8wnQISwjT55ft0zn9QYRIYBQBgZlY6W9Wsw5bODOBnRP8ngPjGcrF0bgFc9hqyYRRLxMoFANI1YuAWQJKN/uyuVSxXMgz2DgAAF5EN4zZc9hp/JwA=","tiers":[{"rank":"I","zh":"命中时，使敌人陷入失衡的几率提高 20%。","en":"Increases chance to stagger enemies on hit by 20%.","pools":["Archetype.Tank"],"slots":["melee","ranged"]},{"rank":"II","zh":"命中时，使敌人陷入失衡的几率提高 30%。","en":"Increases chance to stagger enemies on hit by 30%.","pools":["Archetype.Tank"],"slots":["melee","ranged"]},{"rank":"III","zh":"命中时，使敌人陷入失衡的几率提高 40%。","en":"Increases chance to stagger enemies on hit by 40%.","pools":["Archetype.Tank"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.PointBlank","zh":"贴身射击","en":"Point Blank","category":"offensive","icon":"data:image/webp;base64,UklGRpoAAABXRUJQVlA4TI0AAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitMBRG0mSlBSKQlIICsmfVNXOXdpvRP8nAMC3/kPSJElHko3qYMYdpCM+mFR5/D6Q4AzYe0iJBE1qYO/Sm93A4ybJEfDPjapA4yTtAlVVtq2DmyQS+NI9Eg7uklGnAXY5LiUaAfbQSZAYvw8A","tiers":[{"rank":"I","zh":"近距离时，远程攻击造成的伤害提高 25%。","en":"Ranged attacks deal 25% more damage at close range.","pools":["Archetype.Tank"],"slots":["ranged"]},{"rank":"II","zh":"近距离时，远程攻击造成的伤害提高 50%。","en":"Ranged attacks deal 50% more damage at close range.","pools":["Archetype.Tank"],"slots":["ranged"]},{"rank":"III","zh":"近距离时，远程攻击造成的伤害提高 75%。","en":"Ranged attacks deal 75% more damage at close range.","pools":["Archetype.Tank"],"slots":["ranged"]}]},{"id":"SW.Effect.PotionCooldown","zh":"药剂师","en":"Potion Maker","category":"utility","icon":"data:image/webp;base64,UklGRpAAAABXRUJQVlA4TIMAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noERlYRZJUBwtYwAIWzr8p8k628jsT0f8JmP+xq4NktZkLugqQStn0xm+Dri5rHiiXujDJ0XZQNUe3ASV4ELKse/C/9rcUkujYPbIm2S+Vg5pH6+S88PteCAA=","tiers":[{"rank":"I","zh":"药水冷却时间缩短 5%。","en":"Reduces potion cooldown time by 5%.","pools":["Archetype.Support","Archetype.Tank"],"slots":["armor"]},{"rank":"II","zh":"药水冷却时间缩短 10%。","en":"Reduces potion cooldown time by 10%.","pools":["Archetype.Support","Archetype.Tank"],"slots":["armor"]},{"rank":"III","zh":"药水冷却时间缩短 20%。","en":"Reduces potion cooldown time by 20%.","pools":["Archetype.Support","Archetype.Tank"],"slots":["armor"]}]},{"id":"SW.Effect.Thorns","zh":"反刺","en":"Prickly","category":"offensive","icon":"data:image/webp;base64,UklGRqoAAABXRUJQVlA4TJ4AAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitIBR20iSikJTCIVQaP6kZjV79fwj+j8BTKigoJCAgoKeAvIwm9NpUg8megpY+rIql90Jm7OpPqV6gvUpNmfT5KlET7A+xeZsqk+pnmB9is3pdKna6V70FJAkVVVX3d1JwuZ8miR12d2dJHoOBchNAD3FqqCQgIJyc74fAw==","tiers":[{"rank":"I","zh":"将所受伤害的 50% 反弹给攻击者。","en":"Deals 50% of received damage back to the attacker.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"II","zh":"将所受伤害的 65% 反弹给攻击者。","en":"Deals 65% of received damage back to the attacker.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"III","zh":"将所受伤害的 80% 反弹给攻击者。","en":"Deals 80% of received damage back to the attacker.","pools":["Archetype.Tank"],"slots":["armor"]}]},{"id":"SW.Effect.Constitution","zh":"恢复","en":"Recovery","category":"defensive","icon":"data:image/webp;base64,UklGRrIAAABXRUJQVlA4TKYAAAAvP8APACdAkG0z/5HN5Q7XINK2cT9BkzV0dEyYbfSbP8cchnII5zD/8R4z5NAHjtpIkqSisBSagikkf1JVe3f9I/o/Afl/aLxCg026MU+36DRqpJEX7zdzTtU50ydvxQRV51TBxAYJCY83Sch4v/6Z128GrapqqqpqsMH8mdfvRpLAGSFJ2IGMn0jYYCZ5JaG9ejuSVmNL2AIyerElsAlJQpKwyd8D","tiers":[{"rank":"I","zh":"受到的所有治疗效果提高 10%。","en":"Increases all healing received by 10%.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"II","zh":"受到的所有治疗效果提高 20%。","en":"Increases all healing received by 20%.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"III","zh":"受到的所有治疗效果提高 30%。","en":"Increases all healing received by 30%.","pools":["Archetype.Tank"],"slots":["armor"]}]},{"id":"SW.Effect.Regeneration","zh":"生命回复","en":"Regeneration","category":"defensive","icon":"data:image/webp;base64,UklGRo4AAABXRUJQVlA4TIIAAAAvP8APACdAkG0z/5HN5Q7XINK2cT9BkzV0dEyYbfSbP8cchnII5zD/8R4z5NBHwSqSrDixEAtYwEL8mwJyX787E9H/CVj+4xJInm22UQXVp4EEmimaPEu16Tfts2zVRDnw/kA5+H5KIFmz/Qn02SChWwVt9FnGmvT2visdgbLj/f26","tiers":[{"rank":"I","zh":"脱离战斗 5 秒后，每秒恢复 10% 生命值。","en":"Restores health by 10% per second after 5 seconds out of combat.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"II","zh":"脱离战斗 5 秒后，每秒恢复 15% 生命值。","en":"Restores health by 15% per second after 5 seconds out of combat.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"III","zh":"脱离战斗 5 秒后，每秒恢复 20% 生命值。","en":"Restores health by 20% per second after 5 seconds out of combat.","pools":["Archetype.Tank"],"slots":["armor"]}]},{"id":"SW.Effect.Resilience","zh":"韧性","en":"Resilience","category":"defensive","icon":"data:image/webp;base64,UklGRpYAAABXRUJQVlA4TIkAAAAvP8APAB8gFEBjErk0o0poQ1ST3Ot6oQACE0Qm+XO05j/CihsHbgNAUpRJJqa1SQaHqw631tzlPVrII/o/AfiRYjCZMqOIgC5ZlgiIEYB98mX3TNy3UPt3dMmy3XL5zLLEILYvu2eyHQRQAxEFqiFiyJQny2U/1iVdEmWGgOxgUJ1NhJDdZDNCeAA=","tiers":[{"rank":"I","zh":"从负面状态恢复的速度提高 20%。","en":"Recover from negative statuses 20% faster.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"II","zh":"从负面状态恢复的速度提高 25%。","en":"Recover from negative statuses 25% faster.","pools":["Archetype.Tank"],"slots":["armor"]},{"rank":"III","zh":"从负面状态恢复的速度提高 30%。","en":"Recover from negative statuses 30% faster.","pools":["Archetype.Tank"],"slots":["armor"]}]},{"id":"SW.Effect.Vivify","zh":"盟友","en":"Ally","category":"utility","icon":"data:image/webp;base64,UklGRngAAABXRUJQVlA4TGwAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEUFRI0nRWlgLYwEL418VNzR8I/o/AeU3JTJ1EqnqqqokqnpQVQ5Xs9NVHjuqbv6YLbmTKKpsmWTZSTVOMp/i8QE=","tiers":[{"rank":"I","zh":"施加于自身和盟友的正面状态持续时间延长 15%。","en":"Positive statuses you apply to yourself and allies last 15% longer.","pools":["Archetype.Summoner","Archetype.Support"],"slots":["armor","artifact"]},{"rank":"II","zh":"施加于自身和盟友的正面状态持续时间延长 30%。","en":"Positive statuses you apply to yourself and allies last 30% longer.","pools":["Archetype.Summoner","Archetype.Support"],"slots":["armor","artifact"]},{"rank":"III","zh":"施加于自身和盟友的正面状态持续时间延长 50%。","en":"Positive statuses you apply to yourself and allies last 50% longer.","pools":["Archetype.Summoner","Archetype.Support"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.Opportunist","zh":"恶霸","en":"Bully","category":"offensive","icon":"data:image/webp;base64,UklGRowAAABXRUJQVlA4TH8AAAAvP8APAB8gECD4b9BqQyBAWFMujUCA4L9Bq/kP5kxVgePatpWG8esPt9bcDlYdcffkkXlE/yeAf+iZJZIsgSQ6PNN8JAk6dudzbJYgCUqAXVzy+u/hlV6JGEaiBjyz5PUf80re/D3AM81SF55pmmapCc+cz5Oyktd/b3eelC02AA==","tiers":[{"rank":"I","zh":"对受负面状态影响的敌人造成的伤害提高 25%。","en":"Deal 25% more damage to enemies affected by a negative status.","pools":["Archetype.Support"],"slots":["melee","ranged"]},{"rank":"II","zh":"对受负面状态影响的敌人造成的伤害提高 35%。","en":"Deal 35% more damage to enemies affected by a negative status.","pools":["Archetype.Support"],"slots":["melee","ranged"]},{"rank":"III","zh":"对受负面状态影响的敌人造成的伤害提高 50%。","en":"Deal 50% more damage to enemies affected by a negative status.","pools":["Archetype.Support"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.HealingFocus","zh":"治疗者","en":"Healer","category":"defensive","icon":"data:image/webp;base64,UklGRq4AAABXRUJQVlA4TKEAAAAvP8APACdAmG0kMZd9J3X8p0GkbcOHJmE6r/gyFLKNAMHM4kDOn+NL5j/+LxHMYAZGbSQ5OgpNoSkUheUPKqfrf0T/Fbhto+Ro2zH/Qf9x9nwMeUDeOHaktZADSB7cfASQwTgWqrNnI+jHk0BfAb7qoEqD689pFnQuF8hmJZRiZ7AS1lIK9kwoZSXZCUgwE+YSSP9nLaykv5P+78T/u79xAgA=","tiers":[{"rank":"I","zh":"自己和盟友获得的治疗效果提高 25%。","en":"Increases healing given to yourself and allies by 25%.","pools":["Archetype.Summoner","Archetype.Support"],"slots":["armor","artifact"]},{"rank":"II","zh":"自己和盟友获得的治疗效果提高 35%。","en":"Increases healing given to yourself and allies by 35%.","pools":["Archetype.Summoner","Archetype.Support"],"slots":["armor","artifact"]},{"rank":"III","zh":"自己和盟友获得的治疗效果提高 50%。","en":"Increases healing given to yourself and allies by 50%.","pools":["Archetype.Summoner","Archetype.Support"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.Chains","zh":"桎梏","en":"Shackler","category":"offensive","icon":"data:image/webp;base64,UklGRqYAAABXRUJQVlA4TJoAAAAvP8APAB8w6wISwjT55fuoz39QYRLcRratNi8RU2uS7ZsYW2MStmb6sZg+5BH9V+S2bUMf0z0+oRGFWjjUbxy0EMBQP/7Gu/EH3GI7vMXxWjvGa4A/Eh4IT3lgZVkO9ePvtr6tAXZgB6Ct8cfKsgzeZb9fwV+3yVA//sSfOwRHjnd3i+1jHMdtvzXAn0Z0tLv/6GgThZyp8O9D","tiers":[{"rank":"I","zh":"攻击命中时，有 10% 的几率施加“束缚”状态。","en":"Attacks have a 10% chance to inflict the Chained status on hits.","pools":["Archetype.Support"],"slots":["melee","ranged"]},{"rank":"II","zh":"攻击命中时，有 15% 的几率施加“束缚”状态。","en":"Attacks have a 15% chance to inflict the Chained status on hits.","pools":["Archetype.Support"],"slots":["melee","ranged"]},{"rank":"III","zh":"攻击命中时，有 25% 的几率施加“束缚”状态。","en":"Attacks have a 25% chance to inflict the Chained status on hits.","pools":["Archetype.Support"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.Saboteur","zh":"污染","en":"Tainted","category":"utility","icon":"data:image/webp;base64,UklGRnYAAABXRUJQVlA4TGkAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitEAxJElSK6zCKLTC+Eude+8+I/o/AfKDMfAc7HweTZ6KbC7DFyMBJk/U3LOpnkyT57Eswj2FhevBleL+LJLSeX8WkMH7WxAA","tiers":[{"rank":"I","zh":"使敌人陷入负面状态的持续时间延长 40%。","en":"Increases duration of negative statuses on enemies by 40%.","pools":["Archetype.Support"],"slots":["armor"]},{"rank":"II","zh":"使敌人陷入负面状态的持续时间延长 60%。","en":"Increases duration of negative statuses on enemies by 60%.","pools":["Archetype.Support"],"slots":["armor"]},{"rank":"III","zh":"使敌人陷入负面状态的持续时间延长 80%。","en":"Increases duration of negative statuses on enemies by 80%.","pools":["Archetype.Support"],"slots":["armor"]}]},{"id":"SW.Effect.Expand","zh":"图腾范围","en":"Totem Radius","category":"utility","icon":"data:image/webp;base64,UklGRqQAAABXRUJQVlA4TJgAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEYFR20iSmkJTCIWiEP6kZu/d1n4j+j8B+Y96RKfSRCfSBM7oFLooKCgo6CQKy3GFROe4VqcA6AsBZgCo6s7J7iqAGaogF0LVJJrols6iUNWdQAIJJN1VoDMo9IWgMyRuctLNbH7f6qU5/H0vBg==","tiers":[{"rank":"I","zh":"使所有正面状态的效果范围扩大 20%。","en":"Increases the area of all positive status effects by 20%.","pools":["Archetype.Support"],"slots":["armor","artifact"]},{"rank":"II","zh":"使所有正面状态的效果范围扩大 30%。","en":"Increases the area of all positive status effects by 30%.","pools":["Archetype.Support"],"slots":["armor","artifact"]},{"rank":"III","zh":"使所有正面状态的效果范围扩大 40%。","en":"Increases the area of all positive status effects by 40%.","pools":["Archetype.Support"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.BeastBoss","zh":"群兽首领","en":"Pack Leader","category":"offensive","icon":"data:image/webp;base64,UklGRpIAAABXRUJQVlA4TIYAAAAvP8APACcgECBMyFdoiCDbZmqb19kvECBUuDeoYv6Dc6YitIBRG0mOhkJRGApFofmTuhx2754R/Z+Afn5V1VZV1fdS3VIdTx3+40AXCltujqEq6e5OqtZUAUayvnAVkhG5CQnoONwJCgmodo9g/wISUO0T3041AVDtE0eQQAIwKkjcHNFDAQ==","tiers":[{"rank":"I","zh":"同伴造成的伤害提高 20%。","en":"Companions deal 20% more damage.","pools":["Archetype.Summoner"],"slots":["melee","ranged"]},{"rank":"II","zh":"同伴造成的伤害提高 25%。","en":"Companions deal 25% more damage.","pools":["Archetype.Summoner"],"slots":["melee","ranged"]},{"rank":"III","zh":"同伴造成的伤害提高 30%。","en":"Companions deal 30% more damage.","pools":["Archetype.Summoner"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.Friendship","zh":"牧羊人","en":"Shepherd","category":"defensive","icon":"data:image/webp;base64,UklGRoIAAABXRUJQVlA4THUAAAAvP8APACdAkG0z/5HN5Q7XINK2cT9BkzV0dEyYbfSbP8cchnII5zD/8R4z5NAHiiFJkkZhFFqhFMZfau97nxH9n4BYX5JKkvReACWA86j5x5lBAmZnktwjItwlms+RT6z6VF48CcUztf4AsCKcKILq6Lq/6QEA","tiers":[{"rank":"I","zh":"同伴受到的伤害降低 5%。","en":"Companions take 5% less damage.","pools":["Archetype.Summoner"],"slots":["armor","artifact"]},{"rank":"II","zh":"同伴受到的伤害降低 10%。","en":"Companions take 10% less damage.","pools":["Archetype.Summoner"],"slots":["armor","artifact"]},{"rank":"III","zh":"同伴受到的伤害降低 15%。","en":"Companions take 15% less damage.","pools":["Archetype.Summoner"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.FriendsForever","zh":"兽医","en":"Veterinarian","category":"utility","icon":"data:image/webp;base64,UklGRooAAABXRUJQVlA4TH4AAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEYFRG0mOmsJSaApDofiT2rx3G54R/Z+A+L5t12z7vgBqAPtx94uTIAPJpnkXdkoRESkBqBFgH2WQaJT2Je2Gxh2110DaXb4nUCPsJ4LOGPh/HwQ=","tiers":[{"rank":"I","zh":"被击败的同伴复活速度加快 5%。","en":"Defeated companions come back 5% faster.","pools":["Archetype.Summoner"],"slots":["armor","artifact"]},{"rank":"II","zh":"被击败的同伴复活速度加快 10%。","en":"Defeated companions come back 10% faster.","pools":["Archetype.Summoner"],"slots":["armor","artifact"]},{"rank":"III","zh":"被击败的同伴复活速度加快 15%。","en":"Defeated companions come back 15% faster.","pools":["Archetype.Summoner"],"slots":["armor","artifact"]}]},{"id":"SW.Effect.RollCooldown","zh":"特技","en":"Acrobat","category":"utility","icon":"data:image/webp;base64,UklGRowAAABXRUJQVlA4TIAAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEUFRI0nKWjgLa2EsjH9Rx7TwjOg/A7eNFCXLvAefQARyqkVY1WqpipC/k4Vu1/oX2gDgQpnYir+z8w7606j2J7SLSOz0fdYhbbL+L6yx848C3/OBAA==","tiers":[{"rank":"I","zh":"翻滚的冷却时间缩短 10%。","en":"Reduces rolling cooldown time by 10%.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"II","zh":"翻滚的冷却时间缩短 15%。","en":"Reduces rolling cooldown time by 15%.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"III","zh":"翻滚的冷却时间缩短 25%。","en":"Reduces rolling cooldown time by 25%.","pools":["Archetype.Trickster"],"slots":["armor"]}]},{"id":"SW.Effect.Gambler","zh":"刺客","en":"Assassin","category":"utility","icon":"data:image/webp;base64,UklGRogAAABXRUJQVlA4THsAAAAvP8APACdAkG1Dswxg/ghnugZhttFvDgOc0umeQrYRIKQjOX+Xf/7j/yHtjBCgGJIkqRVWoRVKYfyl9r6/Ef2fAE4YMSriHvYI+x5gS1JKpZQkyabxfJBJJRXpPF9ul2wGny+iFHEfdafiXQD+LgeowY/lAFn+Z+X7PD0A","tiers":[{"rank":"I","zh":"有 10% 的几率在攻击时维持“暗影潜行”状态。","en":"Grants a 10% chance to stay in Shadowcloaking when attacking.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"II","zh":"有 15% 的几率在攻击时维持“暗影潜行”状态。","en":"Grants a 15% chance to stay in Shadowcloaking when attacking.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"III","zh":"有 20% 的几率在攻击时维持“暗影潜行”状态。","en":"Grants a 20% chance to stay in Shadowcloaking when attacking.","pools":["Archetype.Trickster"],"slots":["armor"]}]},{"id":"SW.Effect.Deflect","zh":"弹开","en":"Deflection","category":"defensive","icon":"data:image/webp;base64,UklGRpQAAABXRUJQVlA4TIcAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEcFRALZtJAqmIAqiIP6k6tEbGc+I/k+AriUAnBygD/8XewaovR5Aw7WQgMYrqEmAXA9Z2aRe/Hd2REY6rUhyDcAjwqXEVOkank6Zqr0Oprat4TqACKfrmWr8/wAA","tiers":[{"rank":"I","zh":"有 10% 的几率弹开敌人的弹射物。","en":"Grants a 10% chance to deflect enemy projectiles.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"II","zh":"有 15% 的几率弹开敌人的弹射物。","en":"Grants a 15% chance to deflect enemy projectiles.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"III","zh":"有 20% 的几率弹开敌人的弹射物。","en":"Grants a 20% chance to deflect enemy projectiles.","pools":["Archetype.Trickster"],"slots":["armor"]}]},{"id":"SW.Effect.SwiftSneak","zh":"神行者","en":"Prowler","category":"utility","icon":"data:image/webp;base64,UklGRoQAAABXRUJQVlA4THgAAAAvP8APACdAkG1Dswxg/ghnugZhttFvDgOc0umeQrYRIKQjOX+Xf/7j/yHtjBDAqI0kR01hKCyFpjD8SeULs7vPiP5PAM8Q6ABmsRm4k5AG8OCy+H82w+b/u4ErPYeqhFPlp1KVkJSQ6f/Lr3ASVQlzdorqfJKe6YM=","tiers":[{"rank":"I","zh":"暗影潜行期间，移动速度提高 15%。","en":"Increases movement speed by 15% while Shadowcloaking.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"II","zh":"暗影潜行期间，移动速度提高 20%。","en":"Increases movement speed by 20% while Shadowcloaking.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"III","zh":"暗影潜行期间，移动速度提高 30%。","en":"Increases movement speed by 30% while Shadowcloaking.","pools":["Archetype.Trickster"],"slots":["armor"]}]},{"id":"SW.Effect.ShadowWalk","zh":"潜行","en":"Stealth","category":"utility","icon":"data:image/webp;base64,UklGRoIAAABXRUJQVlA4THYAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEYFRG0mOmsJQWApNofiT2r58G54R/Z8A72DiFeI4JGIiSmPpAWwAxZFAJyVFGIdNPEP0yf/riV07OZazUBHWza6yR1Zx3drJUU02","tiers":[{"rank":"I","zh":"暗影潜行的持续时间延长 20%。","en":"Shadowcloaking lasts 20% longer.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"II","zh":"暗影潜行的持续时间延长 25%。","en":"Shadowcloaking lasts 25% longer.","pools":["Archetype.Trickster"],"slots":["armor"]},{"rank":"III","zh":"暗影潜行的持续时间延长 35%。","en":"Shadowcloaking lasts 35% longer.","pools":["Archetype.Trickster"],"slots":["armor"]}]},{"id":"SW.Effect.Looting","zh":"搜刮者","en":"Looter","category":"utility","icon":"data:image/webp;base64,UklGRogAAABXRUJQVlA4THwAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEYFRG0mOmkJTKApDofmT2r18G54R/Z+A+kd7dNIcQLowFltdm5NjaaXq9urGMQCkCzAaGyCBBBKAsVQ1V0dnj04ama2uPapWqov/l8v2aDYu","tiers":[{"rank":"I","zh":"有 20% 的几率掉落额外的战利品。","en":"Grants a 20% chance to get additional loot drops.","pools":["Archetype.Utility"],"slots":["melee","ranged"]},{"rank":"II","zh":"有 40% 的几率掉落额外的战利品。","en":"Grants a 40% chance to get additional loot drops.","pools":["Archetype.Utility"],"slots":["melee","ranged"]},{"rank":"III","zh":"有 60% 的几率掉落额外的战利品。","en":"Grants a 60% chance to get additional loot drops.","pools":["Archetype.Utility"],"slots":["melee","ranged"]}]},{"id":"SW.Effect.Lucky","zh":"幸运","en":"Luck","category":"utility","icon":"data:image/webp;base64,UklGRpIAAABXRUJQVlA4TIUAAAAvP8APAB8gEEFoboD9DQYUEhDJCANdsldIQEyyxP8tkvmPac+EgNsAbNuGH+A12wlm/Jf6WsWS5j4h2SP6PwG7v/jsF89BqIvomGffoxrSfX8OQV3Q0KhLTl1kVE4v0iLdp4i0LNI5RkMrp+9RDem+D9ntnqiLaFxSnv1ykLjsmH495ccDAA==","tiers":[{"rank":"I","zh":"有 10% 的几率掉落稀有度相同、效果不同的物品。","en":"Grants a 10% chance to drop duplicate variations of items.","pools":["Archetype.Utility"],"slots":["armor"]},{"rank":"II","zh":"有 15% 的几率掉落稀有度相同、效果不同的物品。","en":"Grants a 15% chance to drop duplicate variations of items.","pools":["Archetype.Utility"],"slots":["armor"]},{"rank":"III","zh":"有 20% 的几率掉落稀有度相同、效果不同的物品。","en":"Grants a 20% chance to drop duplicate variations of items.","pools":["Archetype.Utility"],"slots":["armor"]}]},{"id":"SW.Effect.EmeraldsIncrease","zh":"探勘者","en":"Prospector","category":"utility","icon":"data:image/webp;base64,UklGRpQAAABXRUJQVlA4TIgAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noERlcRbLVWFjAAhawcP2bIuy+QPiciej/BNQ7HJNrCjWR1VDXEypAAbKhNgDrSN0Gsr0ErCNbSIAWIIQ0LKzD7i5UtbG7KoB1KJPam/1/GmpPtb74/zQm68v/7+oC","tiers":[{"rank":"I","zh":"有 5% 的几率获得额外的绿宝石。","en":"Grants a 5% chance to receive additional emeralds.","pools":["Archetype.Utility"],"slots":["armor"]},{"rank":"II","zh":"有 10% 的几率获得额外的绿宝石。","en":"Grants a 10% chance to receive additional emeralds.","pools":["Archetype.Utility"],"slots":["armor"]},{"rank":"III","zh":"有 15% 的几率获得额外的绿宝石。","en":"Grants a 15% chance to receive additional emeralds.","pools":["Archetype.Utility"],"slots":["armor"]}]},{"id":"SW.Effect.Opulence","zh":"袭击者","en":"Raider","category":"utility","icon":"data:image/webp;base64,UklGRqIAAABXRUJQVlA4TJUAAAAvP8APACdAkG0zmUnN+UzXIMw24pji9CZ1DvchkCDBRR7x/5kI5j++p5noEYFRG0mOlkJTKApNofiTuhzmH9H/Ceg/6nTQerHVKZRdXSc9nGELunaTtZK1Wu3J/9N14zQKkEACoLO0qgAJgGov/l+SKLuaJLNoAp6EWVRBe1Kh1Snae9ydor2j1Z6c6fwEuTiPN07zYQA=","tiers":[{"rank":"I","zh":"有 1% 的几率掉落更稀有的战利品。","en":"Grants a 1% chance of higher rarity loot drops.","pools":["Archetype.Utility"],"slots":["melee","ranged"]},{"rank":"II","zh":"有 2% 的几率掉落更稀有的战利品。","en":"Grants a 2% chance of higher rarity loot drops.","pools":["Archetype.Utility"],"slots":["melee","ranged"]},{"rank":"III","zh":"有 3% 的几率掉落更稀有的战利品。","en":"Grants a 3% chance of higher rarity loot drops.","pools":["Archetype.Utility"],"slots":["melee","ranged"]}]}]}
+    </script>
+    <script>
+      const $ = (id) => document.getElementById(id)
+const data = JSON.parse($('glossary-data').textContent)
+const categories = data.categories
+const scopes = new Map(data.filters.map((p) => [p.id, p]))
+const copy = {
+  title: ['词条总览', 'Effect guide'],
+  search: ['搜索词条', 'Search effects'],
+  placeholder: ['搜索名称或效果', 'Search names or effects'],
+  all: ['全部', 'All'],
+  scope: ['范围', 'Scope'],
+  tier: ['阶数', 'Tier'],
+  offensive: ['攻击', 'Attack'],
+  defensive: ['防御', 'Defense'],
+  utility: ['实用', 'Utility'],
+  other: ['其他', 'Other'],
+  empty: ['没有匹配的词条', 'No matching effects'],
+  emptyHint: [
+    '试试其他名称、效果，或将范围改为“全部”。',
+    'Try another search or set the scope to All.',
+  ],
+}
+const norm = (s) => s.normalize('NFKC').toLowerCase()
+const query = $('q')
+let lang = 'zh',
+  pool = '',
+  rank = 'III'
+const label = (key) => copy[key]?.[lang === 'zh' ? 0 : 1] || key
+const name = (item) =>
+  typeof item === 'string' ? item : item?.[lang] || item?.[lang === 'zh' ? 'en' : 'zh']
+const categoryLabel = (category) => name(data.categoryLabels[category]) || label(category)
+function el(tag, cls, text) {
+  const node = document.createElement(tag)
+  if (cls) node.className = cls
+  if (text !== undefined) node.textContent = text
+  return node
+}
+function readRoute() {
+  const hash = location.hash.slice(1),
+    args = new URLSearchParams(hash)
+  const legacy = hash.startsWith('sec-') ? hash.slice(4) : args.get('pool')
+  const preset = legacy === 'Artifact' ? 'slot:artifact' : legacy
+  lang = args.get('lang') === 'en' ? 'en' : 'zh'
+  pool = scopes.has(preset) ? preset : ''
+  rank = data.ranks.includes(args.get('tier')) ? args.get('tier') : 'III'
+  query.value = args.get('q') || ''
+  return args.get('effect')
+}
+function writeRoute() {
+  const params = new URLSearchParams()
+  if (lang === 'en') params.set('lang', lang)
+  if (pool) params.set('pool', pool)
+  if (rank !== 'III') params.set('tier', rank)
+  if (query.value.trim()) params.set('q', query.value.trim())
+  const hash = '#' + params
+  if (hash !== (location.hash || '#')) history.replaceState(null, '', hash)
+}
+// Search both languages and IDs without exposing the alternate language or ID on cards.
+const index = new Map(
+  data.effects.map((e) => [
+    e.id,
+    new Map(
+      e.tiers.map((tier) => [
+        tier.rank,
+        norm(
+          [
+            e.id,
+            e.en,
+            e.zh,
+            tier.en,
+            tier.zh,
+            ...tier.slots.flatMap((slot) => [data.slots[slot].zh, data.slots[slot].en]),
+          ].join(' '),
+        ),
+      ]),
+    ),
+  ]),
+)
+function choice(group, value, text) {
+  const node = el('label', 'choice'),
+    input = el('input')
+  input.type = 'radio'
+  input.name = group
+  input.value = value
+  node.append(input, el('span', '', text))
+  return node
+}
+function controls() {
+  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en'
+  document.title = label('title') + ' · MCD2'
+  for (const node of document.querySelectorAll('[data-i18n]'))
+    node.textContent = label(node.dataset.i18n)
+  for (const b of document.querySelectorAll('[data-lang]'))
+    b.setAttribute('aria-pressed', b.dataset.lang === lang)
+  query.placeholder = label('placeholder')
+  $('ranks').replaceChildren(...data.ranks.map((tier) => choice('tier', tier, tier)))
+  $('pools').replaceChildren(
+    choice('pool', '', label('all')),
+    ...data.filters.map((p) => choice('pool', p.id, name(p))),
+  )
+}
+function matchesScope(tier, scope) {
+  return scope.slots
+    ? tier.slots.some((slot) => scope.slots.includes(slot))
+    : tier.pools.includes(scope.id)
+}
+function tagFor(tag) {
+  const active = !pool || tag.filter === pool
+  const node = el('span', 'tag' + (active ? ' here' : ''), name(tag))
+  node.dataset.tag = tag.id
+  if (active) node.style.setProperty('--tag-color', tag.color)
+  return node
+}
+function cardFor(e) {
+  const card = el('article', 'effect-card')
+  card.dataset.effect = card.id = e.id
+  const head = el('div', 'card-head')
+  if (e.icon) {
+    const image = el('img')
+    image.src = e.icon
+    image.alt = ''
+    image.width = image.height = 34
+    head.append(image)
+  }
+  const title = el('h3', '', name(e))
+  title.id = 'name-' + e.id
+  card.setAttribute('aria-labelledby', title.id)
+  head.append(title, el('span', 'tier', e.tier.rank))
+  const desc = el('p', 'value')
+  for (const part of name(e.tier).split(/(-?\d+(?:[.,]\d+)?[%％]?)/))
+    desc.append(/^-?\d/.test(part) ? el('b', '', part) : document.createTextNode(part))
+  const tags = el('div', 'tags')
+  tags.append(
+    ...data.tags
+      .filter((tag) => (tag.slot ? e.tier.slots.includes(tag.slot) : e.tier.pools.includes(tag.id)))
+      .map(tagFor),
+  )
+  card.append(head, desc, tags)
+  return card
+}
+function groupFor(type, entries) {
+  const section = el('section', 'group')
+  section.dataset.category = type
+  const title = el('h2', 'group-title', categoryLabel(type))
+  title.id = 'group-' + type
+  title.append(el('small', '', String(entries.length)))
+  section.setAttribute('aria-labelledby', title.id)
+  const cards = el('div', 'cards')
+  cards.append(...entries.map(cardFor))
+  section.append(title, cards)
+  return section
+}
+function render() {
+  const words = norm(query.value.trim()).split(/\s+/).filter(Boolean)
+  const available = data.effects.flatMap((effect) => {
+    const tier = effect.tiers.find((t) => t.rank === rank)
+    return tier ? [{ ...effect, tier }] : []
+  })
+  const matches = available.filter(
+    (e) =>
+      (!pool || matchesScope(e.tier, scopes.get(pool))) &&
+      words.every((w) => index.get(e.id).get(rank).includes(w)),
+  )
+  for (const input of $('pools').querySelectorAll('input')) input.checked = input.value === pool
+  for (const input of $('ranks').querySelectorAll('input')) input.checked = input.value === rank
+  $('count').textContent =
+    lang === 'zh'
+      ? matches.length + ' / ' + available.length + ' 项'
+      : matches.length + ' of ' + available.length + ' effects'
+  $('empty').hidden = matches.length > 0
+  $('effect-list').replaceChildren(
+    ...categories.flatMap((type) => {
+      const entries = matches.filter((e) => e.category === type)
+      return entries.length ? [groupFor(type, entries)] : []
+    }),
+  )
+}
+function update() {
+  render()
+  writeRoute()
+}
+$('search').addEventListener('submit', (e) => e.preventDefault())
+query.addEventListener('input', update)
+$('pools').addEventListener('change', (e) => {
+  pool = e.target.value
+  update()
+})
+$('ranks').addEventListener('change', (e) => {
+  rank = e.target.value
+  update()
+})
+document.querySelector('.languages').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-lang]')
+  if (b) {
+    lang = b.dataset.lang
+    controls()
+    update()
+  }
+})
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+    e.preventDefault()
+    query.focus()
+    query.select()
+  } else if (e.key === 'Escape' && document.activeElement === query && query.value) {
+    e.preventDefault()
+    query.value = ''
+    update()
+  }
+})
+function route() {
+  const effect = readRoute()
+  controls()
+  render()
+  const card = effect && document.getElementById(effect)
+  if (card?.matches('.effect-card')) {
+    card.classList.add('bookmark')
+    requestAnimationFrame(() => card.scrollIntoView({ block: 'center' }))
+  }
+}
+window.addEventListener('hashchange', route)
+if (data.brand) {
+  $('brand-icon').src = data.brand
+  $('favicon').href = data.brand
+} else $('brand-icon').hidden = true
+$('version').textContent = 'v' + data.version
+if (/Mac|iPad|iPhone/.test(navigator.platform)) $('shortcut').textContent = '⌘ K'
+route()
+
+    </script>
+  </body>
+</html>

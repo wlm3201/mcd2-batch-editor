@@ -1,0 +1,162 @@
+{
+  "SW.Item.Artifact.BlizzardStaff": {
+    "zh": "向敌人释放一股由灵魂之力驱动的暴风雪，创造一片温暖惬意的冬日奇境。",
+    "en": "Blasts a soul-powered blizzard at your enemies and creates a cozy winter wonderland."
+  },
+  "SW.Item.Artifact.CarapaceOcarina": {
+    "zh": "这个中空尸壳奏出的乐声可抵御远程攻击。",
+    "en": "The music of this hollowed husk protects against ranged attacks."
+  },
+  "SW.Item.Artifact.ConductiveBracelet": {
+    "zh": "为攻击注入噼啪作响的电击之力，戴在手腕上也格外醒目！",
+    "en": "Imbues your attacks with the power of crackling electricity and looks striking on your wrist!"
+  },
+  "SW.Item.Artifact.CorruptedBeacon": {
+    "zh": "将灵魂转化为原始能量，既可以短暂发射，也可以消耗大量灵魂释放一道威力绝伦的冲击波。",
+    "en": "Turns souls into raw power as you fire it in short bursts or in one long, soul-draining blast of ultimate power."
+  },
+  "SW.Item.Artifact.CorruptedSeeds": {
+    "zh": "瞬间生出致命藤蔓，使敌人中毒并受到束缚，而你则能收获成果。",
+    "en": "Instantly sprout into deadly vines, poisoning and binding your enemies while you reap what youâve sown."
+  },
+  "SW.Item.Artifact.CreeperCandle": {
+    "zh": "看起来是再普通不过的蜡烛，但燃烧的烛芯却传来不祥的嘶嘶声…等等，那是引信！",
+    "en": "Just a completely normal candle, apart from that ominous hss coming from the burning wick... Wait, thatâs a fuse!"
+  },
+  "SW.Item.Artifact.DeathcapMushroom": {
+    "zh": "勇敢的战士会在战斗前食用，进入狂暴状态，同时提升移动和攻击速度。",
+    "en": "Eaten by daring warriors before battle to enter a berserker state, increasing both movement and attack speed."
+  },
+  "SW.Item.Artifact.FightersFife": {
+    "zh": "长笛的乐声能赋予杰出的战士暴击之力。",
+    "en": "The music of the flute grants critical striking powers to any fighter of note."
+  },
+  "SW.Item.Artifact.FireBracelet": {
+    "zh": "为攻击注入熊熊燃烧的烈焰之力，戴在手腕上也光芒四射！",
+    "en": "Imbues your attacks with the power of a blazing inferno and looks radiant on your wrist!"
+  },
+  "SW.Item.Artifact.FireworkQuiver": {
+    "zh": "TNT 的爆炸威力加上箭矢的射速，还能出什么岔子呢？",
+    "en": "The explosive power of the TNT combined with the high velocity movement of an arrow, what could possibly go wrong?"
+  },
+  "SW.Item.Artifact.FlameQuiver": {
+    "zh": "用正义的怒火点燃你的箭矢。",
+    "en": "Light your arrows with the flame of your righteous rage."
+  },
+  "SW.Item.Artifact.FlameSceptre": {
+    "zh": "手持权杖可充入灵魂，随后会释放灵魂之火焚烧敌人。",
+    "en": "Hold the scepter to charge it up with souls, then release soul-powered fire on your enemies."
+  },
+  "SW.Item.Artifact.FrostBracelet": {
+    "zh": "为攻击注入凛冽的暴雪之力，戴在手腕上也十分炫酷！",
+    "en": "Imbues your attacks with the power of freezing blizzards and looks really cool on your wrist!"
+  },
+  "SW.Item.Artifact.FrostQuiver": {
+    "zh": "这些箭会让敌人因恐惧和寒冷而颤抖。",
+    "en": "These arrows will have your enemies quivering from both fear and cold."
+  },
+  "SW.Item.Artifact.Grindstone": {
+    "zh": "用磨刀石磨利武器，让敌人感受利刃的刺痛，造成额外伤害。",
+    "en": "Sharpen your weapons on the grindstone to make enemies feel the sting of your steel and cause extra damage."
+  },
+  "SW.Item.Artifact.HasteMushroom": {
+    "zh": "勇敢的战士会在战斗前食用，提高移动速度，然后冲锋陷阵。",
+    "en": "Eaten by daring warriors before battle, sending them charging into battle with increased movement speed."
+  },
+  "SW.Item.Artifact.Honeypot": {
+    "zh": "用黏糊糊的美味困住敌人，同时让嗡嗡作响的伙伴们加入战斗！胜利从未如此甜蜜。",
+    "en": "A sticky treat to trap your enemies as your buzzing friends join the battle! Victory never tasted so sweet."
+  },
+  "SW.Item.Artifact.IronHideLute": {
+    "zh": "这件精美乐器以神龟药水作为涂层，能让所有跟上你节奏的伙伴们获得抗性加成。",
+    "en": "A beautiful instrument varnished with Potion of the Turtle Master, granting resistance to all friends who catch your groove."
+  },
+  "SW.Item.Artifact.LightningQuiver": {
+    "zh": "这些箭矢会如天雷般击中敌人。",
+    "en": "These arrows will strike your enemies like lightning from the skies."
+  },
+  "SW.Item.Artifact.LightningRod": {
+    "zh": "引导由灵魂之力驱动的闪电，只要握住它，就能把敌人电得晕头转向。",
+    "en": "Channels soul-powered lightning, zapping your enemies silly for as long as you hold it."
+  },
+  "SW.Item.Artifact.MaimingMushroom": {
+    "zh": "勇敢的战士会在战斗前服用，释放狂怒，提升攻击速度。",
+    "en": "Eaten by daring warriors before battle, unleashing their rage and increasing their attack speed."
+  },
+  "SW.Item.Artifact.PicnicBlanket": {
+    "zh": "真是野餐的好天气！和朋友们分享健康的美食吧。饿着肚子可没法并肩作战。",
+    "en": "Great day for a picnic! Share healthy treats with your friends. Hangry friends make for bad allies in battle."
+  },
+  "SW.Item.Artifact.PoisonBracelet": {
+    "zh": "为攻击注入剧毒之力，戴在手腕上也十分惊艳！",
+    "en": "Imbues your attacks with poisonous power and looks stunning on your wrist!"
+  },
+  "SW.Item.Artifact.PoisonQuiver": {
+    "zh": "浸泡了毒液的箭袋，让箭矢在命中后附带额外刺痛。",
+    "en": "A quiver soaked in venom for that extra sting when your arrows bite."
+  },
+  "SW.Item.Artifact.Powershaker": {
+    "zh": "来换个花样！巨力砂槌不仅爽快感爆表，还能震撼敌人！",
+    "en": "Letâs shake things up! The Powershaker is a smashing good time and will blow your enemiesâ minds!"
+  },
+  "SW.Item.Artifact.RallyingHorn": {
+    "zh": "这支神秘号角发出的声音能将敌人震飞并造成耳鸣。但可能需要多加练习。",
+    "en": "The music from this mystical horn will knock enemies over and leave their ears ringing. You may need some practice."
+  },
+  "SW.Item.Artifact.RedstoneMines": {
+    "zh": "这款最先进的地雷发射器，一次能发射一整排的爆炸性红石地雷。",
+    "en": "This state-of-the-craft mine launcher will fire a volley of explosive Redstone mines."
+  },
+  "SW.Item.Artifact.Satchel.Conductive": {
+    "zh": "扔向地面即可在身边释放汹涌电流。电力十足！",
+    "en": "Throw it on the ground to spread conductive chaos around yourself. Itâs a real power trip!"
+  },
+  "SW.Item.Artifact.Satchel.Fire": {
+    "zh": "扔向地面即可在身边点燃熊熊烈火。你将变得炽热难挡！",
+    "en": "Throw it on the ground to spread a fierce fire around yourself. Youâll be too hot to handle!"
+  },
+  "SW.Item.Artifact.Satchel.Freezing": {
+    "zh": "扔向地面即可在身边掀起刺骨暴雪。绝对是最冷酷的法器之一！",
+    "en": "Throw it on the ground to spread a blistering blizzard around yourself. One of the coolest artifacts there is!"
+  },
+  "SW.Item.Artifact.Satchel.Poison": {
+    "zh": "扔向地面即可在身边散布恐怖毒雾。别担心，这种“怪物驱逐剂”绝对环保无公害。",
+    "en": "Throw it on the ground to spread toxic terror around yourself. Donât worry, this mob repellent is completely eco-friendly."
+  },
+  "SW.Item.Artifact.SmokeBomb": {
+    "zh": "末影迷雾烟雾弹能让你借助阴影掩护，悄悄靠近敌人。",
+    "en": "The Ender Fog smoke bomb lets you sneak up on enemies, cloaked by shadows."
+  },
+  "SW.Item.Artifact.SoulHarvester": {
+    "zh": "先用收集到的灵魂为其充能，随后引发强大的咒力爆弹。",
+    "en": "Charge it up with the souls you have collected before releasing them into a cluster hex of power."
+  },
+  "SW.Item.Artifact.TotemOfCasting": {
+    "zh": "将图腾置于地面，即可向盟友散发驭器能量，缩短法器的冷却时间。",
+    "en": "Place the totem on the ground to spread artificing energy to your allies, reducing their artifact cooldown time."
+  },
+  "SW.Item.Artifact.TotemOfRegeneration": {
+    "zh": "这个木质雕像散发着温暖的气息，就像噼啪作响的营火一样，能治疗所有聚集在它周围的伙伴。",
+    "en": "This wooden figurine radiates a warmth like that of a crackling campfire and heals all friends who gather around it."
+  },
+  "SW.Item.Artifact.TotemOfShielding": {
+    "zh": "这个纯金图腾会展开一道防护屏障，为身处其中的所有同伴阻挡弹射物。",
+    "en": "This solid gold totem radiates a protective barrier, shielding all inside it from projectiles."
+  },
+  "SW.Item.Artifact.WarBanner": {
+    "zh": "高举战旗，为你和附近所有盟友赋予力量。",
+    "en": "Raise the banner of war and grant strength to you and all nearby allies."
+  },
+  "SW.Item.Artifact.WardingChimes": {
+    "zh": "由轰鸣虫尸壳制成的风铃。发出的乐声能让你的皮肤如甲壳般坚硬。",
+    "en": "Chimes crafted from humbler husk. Their music turns your skin as thick as carapace."
+  },
+  "SW.Item.Artifact.WarriorsDrums": {
+    "zh": "让鼓声激荡战士之心，使所有暴击造成双倍伤害。",
+    "en": "Let the sound of drums fill your warrior heart with the power to do double damage on all critical hits."
+  },
+  "SW.Item.Artifact.WitchesBrew": {
+    "zh": "女巫的秘密配方，掷向敌人会产生一团弱化迷雾。这里面到底加了什么？",
+    "en": "A witch's secret formula to throw at your enemies and spread a cloud of weakening vapor. What do they put in this stuff?"
+  }
+}

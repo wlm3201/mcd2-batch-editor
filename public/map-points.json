@@ -1,0 +1,2808 @@
+{
+  "meta": {
+    "source": "generated entirely from installed game resources; no save-derived records",
+    "generatedBy": "rebuild-map-points.mjs over an unpacked game content directory",
+    "nativeSources": [
+      "Dungeons/Plugins/SpicewoodGuidance/Content/Networks/OverworldGuidanceNetwork.json :: Nodes[].PointsOfInterest + Position",
+      "Dungeons/Content/Spicewood/Core/DataTables/UFS/DT_CutsceneDefinition.json :: Rows[].CutsceneName.TagName"
+    ],
+    "doors": 251,
+    "cutscenes": 24,
+    "markerRule": "Dungeon -> 8, Rift -> 9, otherwise -> 7 (verified 126/126 against the completed save)",
+    "limitations": [
+      "Location is the guidance-network node position, not the runtime door actor transform; save coordinates differ by 50-unit grid steps in X/Y and ~92/100 in Z",
+      "HasOptionalDoorMarkerOverride / OptionalDoorMarkerType have no per-door native table, so all bundled records use false / 0",
+      "68 of the 251 ids are alternative spawn spots of procedural dungeon/rift groups; DT_ProceduralAreas.json uses UseFixedSeeds=false and opens only a subset per session",
+      "DT_CutsceneDefinition uses SW.UI.cutscene.Miniscene.MS49 while the game writes SW.UI.Cutscene.Miniscene.MS49 into saves; bundled list keeps the native spelling"
+    ]
+  },
+  "doors": [
+    {
+      "Location": {
+        "X": -73850,
+        "Y": 159950,
+        "Z": 7937.5
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.1",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -88950,
+        "Y": 162350,
+        "Z": 7593.333
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.7",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -97050,
+        "Y": 169350,
+        "Z": 6310
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.5",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -79450,
+        "Y": 163950,
+        "Z": 7710
+      },
+      "DoorId": "SW.Doorway.MeadowA1.DeepDarkT1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -83350,
+        "Y": 179950,
+        "Z": 6683.333
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.4",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -70050,
+        "Y": 170250,
+        "Z": 7920
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.2",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -73000,
+        "Y": 186450,
+        "Z": 6590
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.8",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -70300,
+        "Y": 206450,
+        "Z": 6590
+      },
+      "DoorId": "SW.Doorway.Dungeon.CarapaceA1.Dungeons.1",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -89950,
+        "Y": 165450,
+        "Z": 6520
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.10",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -87950,
+        "Y": 160100,
+        "Z": 5330
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Ext.2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -100450,
+        "Y": 166900,
+        "Z": 7500
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.6",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -76950,
+        "Y": 207350,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.SecondLayer",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -76950,
+        "Y": 228200,
+        "Z": 7780
+      },
+      "DoorId": "SW.Doorway.Dungeon.CarapaceA1.Dungeons.4",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -84250,
+        "Y": 220305,
+        "Z": 7640
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.ThirdLayer2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -81150,
+        "Y": 220800,
+        "Z": 7290
+      },
+      "DoorId": "SW.Doorway.Dungeon.CarapaceA1.Dungeons.5",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -80450,
+        "Y": 246900,
+        "Z": 7780
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Dungeon.6",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -71500,
+        "Y": 216050,
+        "Z": 7290
+      },
+      "DoorId": "SW.Doorway.Dungeon.CarapaceA1.Dungeons.2",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -76050,
+        "Y": 206100,
+        "Z": 7010
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.FirstLayer",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -72550,
+        "Y": 217700,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.SecondLayerUp1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -73150,
+        "Y": 219350,
+        "Z": 7570
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.ThirdLayer1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -69650,
+        "Y": 222050,
+        "Z": 7593.333
+      },
+      "DoorId": "SW.Doorway.Dungeon.CarapaceA1.Dungeons.3",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -68350,
+        "Y": 243050,
+        "Z": 7616.667
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.Monarch.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 26300,
+        "Y": 117800,
+        "Z": 319.556
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Courtyard.TwoEndTowers",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 22100,
+        "Y": 98700,
+        "Z": 298.974
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.House3.Basement3",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 24900,
+        "Y": 96600,
+        "Z": 265.19
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.House2.Basement2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 25000,
+        "Y": 99200,
+        "Z": 220
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.2",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 34700,
+        "Y": 100100,
+        "Z": 500
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.3",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 43221.154,
+        "Y": 97844.231,
+        "Z": 1690
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.8",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 37655.769,
+        "Y": 95021.154,
+        "Z": 1900
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.7",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 10700,
+        "Y": 112050,
+        "Z": 27.5
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Ship1.Bow",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 8680.769,
+        "Y": 116503.846,
+        "Z": -200
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.5",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 17250,
+        "Y": 108350,
+        "Z": 248
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.3",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 13400,
+        "Y": 127000,
+        "Z": 850
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.14",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 7400,
+        "Y": 125000,
+        "Z": -25.455
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.15",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 18300,
+        "Y": 113000,
+        "Z": -573.596
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.5",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 29450,
+        "Y": 112350,
+        "Z": 220
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.6",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 19110,
+        "Y": 123150,
+        "Z": -270
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Courtyard.Keep",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 22300,
+        "Y": 121340,
+        "Z": 1130
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Courtyard.MainHall",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 39200,
+        "Y": 110900,
+        "Z": 710
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.8",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 32000,
+        "Y": 103100,
+        "Z": 500
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.House1.Basement1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 29500,
+        "Y": 105600,
+        "Z": 547.419
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.4",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 32200,
+        "Y": 104900,
+        "Z": 508.591
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.House4.Basement4",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 42150,
+        "Y": 120350,
+        "Z": 2838
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.9",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 37500,
+        "Y": 97800,
+        "Z": 2600
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.7",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 38600,
+        "Y": 127100,
+        "Z": 4834.815
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.10",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 40436.602,
+        "Y": 112404.06,
+        "Z": 2110
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.WatchTower",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 9550,
+        "Y": -8800,
+        "Z": 3510
+      },
+      "DoorId": "SW.Doorway.Town.ReturnFromDeepDark.A2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 14900,
+        "Y": 11800,
+        "Z": 4483
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.1",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 23350,
+        "Y": 24550,
+        "Z": 4236.667
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.5",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 20900,
+        "Y": 14000,
+        "Z": 4859.826
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.2",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 21550,
+        "Y": 27550,
+        "Z": 4294
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Dungeon.5",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 29130,
+        "Y": 38400,
+        "Z": 4420
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Farm.MeadowR0.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 23450,
+        "Y": 37950,
+        "Z": 3510
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Dungeon.6",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 14250,
+        "Y": -12950,
+        "Z": 3650
+      },
+      "DoorId": "SW.Doorway.TownA1.Docks",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 21950,
+        "Y": 10350,
+        "Z": 5190
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Dungeon.2",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 15750,
+        "Y": 3850,
+        "Z": 4238
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Dungeon.1",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 15800,
+        "Y": 3850,
+        "Z": 4233.333
+      },
+      "DoorId": "SW.Doorway.PlainsA1.DeepDarkTutorial.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 19800,
+        "Y": 17600,
+        "Z": 4420
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.4",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 29921.154,
+        "Y": 17844.231,
+        "Z": 5400
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Dungeon.3",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 24800,
+        "Y": 16900,
+        "Z": 4759.248
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.3",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 29750,
+        "Y": 23450,
+        "Z": 5470
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Dungeon.4",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 25200,
+        "Y": 37300,
+        "Z": 4081.951
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.8",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 23000,
+        "Y": 28300,
+        "Z": 4600.811
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.7",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 27000,
+        "Y": 26450,
+        "Z": 4170
+      },
+      "DoorId": "SW.Doorway.PlainsA1.ScoutPoint",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 30600,
+        "Y": 32300,
+        "Z": 4177.422
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Rift.6",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 29798.957,
+        "Y": 35050.897,
+        "Z": 4222.993
+      },
+      "DoorId": "SW.Doorway.PlainsA1.SpookyBarn",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 16255,
+        "Y": 43700,
+        "Z": 1830
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.1",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 18410,
+        "Y": 48720,
+        "Z": 1395.291
+      },
+      "DoorId": "SW.Doorway.ForestA1.Underwell.Exterior",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 35350,
+        "Y": 43650,
+        "Z": 5260
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Dungeon.7",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -89950,
+        "Y": 239950,
+        "Z": 10151.064
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Dungeon.3",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -91900,
+        "Y": 253550,
+        "Z": 10580
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Dungeon.4",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -86950,
+        "Y": 239050,
+        "Z": 8200
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Dungeon.2",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -79280,
+        "Y": 155040,
+        "Z": 10510
+      },
+      "DoorId": "SW.Doorway.MeadowR1.ForestA1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -8700,
+        "Y": 78100,
+        "Z": 582.054
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.1",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -11050,
+        "Y": 74150,
+        "Z": 948
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.6",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 15497.412,
+        "Y": 59950.164,
+        "Z": 2460
+      },
+      "DoorId": "SW.Doorway.ForestA1.OutpostZone.MeadowR1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 19750,
+        "Y": 79450,
+        "Z": 2138
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.12",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 7100,
+        "Y": 87600,
+        "Z": 734.042
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.11",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 10500,
+        "Y": 80300,
+        "Z": 1900
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.10",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 16750,
+        "Y": 96850,
+        "Z": 80
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.1",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 15700,
+        "Y": 91700,
+        "Z": 640
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.12",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -56750,
+        "Y": 89250,
+        "Z": 738
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.9",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -20900,
+        "Y": 79900,
+        "Z": 748.335
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.9",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -36850,
+        "Y": 90750,
+        "Z": 738
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.3",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -41500,
+        "Y": 88500,
+        "Z": 780
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.4",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -48650,
+        "Y": 90750,
+        "Z": 738
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.4",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -14200,
+        "Y": 89350,
+        "Z": 640
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.5",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -12950,
+        "Y": 85550,
+        "Z": 1284
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.2",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -19600,
+        "Y": 90700,
+        "Z": 1217.5
+      },
+      "DoorId": "SW.Doorway.PlainsA2.StorageTower",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -21250,
+        "Y": 93700,
+        "Z": 659.091
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Ext.3",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -21650,
+        "Y": 95950,
+        "Z": 1053
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.1",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 21150,
+        "Y": 130050,
+        "Z": 1774
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.11",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 27823.446,
+        "Y": 129564.059,
+        "Z": 1620
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.13",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 36500,
+        "Y": 126950,
+        "Z": 3160
+      },
+      "DoorId": "SW.Doorway.DesertA1.Cliffs.IcedCavernEntrance3",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 41500,
+        "Y": 121300,
+        "Z": 4890
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.9",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 30050,
+        "Y": 133300,
+        "Z": 6310
+      },
+      "DoorId": "SW.Doorway.DesertA1.Cliffs.IceCaves",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -2175,
+        "Y": 116325,
+        "Z": 10
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.HalfShip.Stern",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -25,
+        "Y": 115775,
+        "Z": -200
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.HalfShip.Bow",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -4000,
+        "Y": 124600,
+        "Z": -270
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.16",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 1350,
+        "Y": 132700,
+        "Z": -270
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.IceCaves",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 8700,
+        "Y": 94500,
+        "Z": 150
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.11",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 5750,
+        "Y": 104150,
+        "Z": 248
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.2",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 10800,
+        "Y": 99800,
+        "Z": 168.75
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.1",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 7750,
+        "Y": 111600,
+        "Z": -60
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Ship1.Stern",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 14421.154,
+        "Y": 110444.231,
+        "Z": 290
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.4",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -48640,
+        "Y": 6850,
+        "Z": 5381.333
+      },
+      "DoorId": "SW.Doorway.ForestA1.Underwell.Interior",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 8555.769,
+        "Y": 52221.154,
+        "Z": 1900
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.4",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 17050,
+        "Y": 52850,
+        "Z": 1550
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.1",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 6150,
+        "Y": 63950,
+        "Z": 1711
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.9",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 7355.769,
+        "Y": 72221.154,
+        "Z": 1690
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.5",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 18350,
+        "Y": 59450,
+        "Z": 1774
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.3",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 25850,
+        "Y": 60850,
+        "Z": 3370
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.7",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 22900,
+        "Y": 51800,
+        "Z": 2072.812
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.2",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 22950,
+        "Y": 48550,
+        "Z": 1760
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.2",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 22050,
+        "Y": 58550,
+        "Z": 1900
+      },
+      "DoorId": "SW.Doorway.ForestA1.SpiderCaves.Exterior.3a",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 19000,
+        "Y": 63050,
+        "Z": 2320
+      },
+      "DoorId": "SW.Doorway.ForestA1.SpiderCaves.Exterior.1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 18200,
+        "Y": 66500,
+        "Z": 2310
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.6",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -246100,
+        "Y": 269150,
+        "Z": 11140
+      },
+      "DoorId": "SW.Doorway.DeepDarkA2.ExitToTown",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 25110,
+        "Y": -10100,
+        "Z": 4910
+      },
+      "DoorId": "SW.Doorway.TownA1.DeepDarkT1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 24850,
+        "Y": 65350,
+        "Z": 2930
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.6",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 23800,
+        "Y": 69300,
+        "Z": 1620
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.9",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 10550,
+        "Y": 93950,
+        "Z": 248
+      },
+      "DoorId": "SW.Doorway.DesertA1.Dungeon.10",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 8025,
+        "Y": 96425,
+        "Z": 526.923
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Ship2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 23300,
+        "Y": 62000,
+        "Z": 3230
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.4",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -94150,
+        "Y": 193300,
+        "Z": 5260
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Ext.1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -84250,
+        "Y": 189750,
+        "Z": 3860
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.9",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 28421.154,
+        "Y": 69844.231,
+        "Z": 2740
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.11",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 34900,
+        "Y": 71150,
+        "Z": 4210
+      },
+      "DoorId": "SW.Doorway.ForestA1.SpiderCaves.Exterior.2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 34700,
+        "Y": 68300,
+        "Z": 3874.496
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.7",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -50900,
+        "Y": 27199.999,
+        "Z": 5470
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Interior.ScoutPoint",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -68450,
+        "Y": 31400,
+        "Z": 2950
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.MainHall.EntryFromNoteRoom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -68200,
+        "Y": 25450,
+        "Z": 2600
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.MainHall.Courtyard",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -71500,
+        "Y": 30350,
+        "Z": 2600
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.MainHall.Junction",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 32850,
+        "Y": 47150,
+        "Z": 1410
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.10",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 32600,
+        "Y": 51000,
+        "Z": 1340
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.5",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 25150,
+        "Y": 56300,
+        "Z": 1468.649
+      },
+      "DoorId": "SW.Doorway.ForestA1.SpiderCaves.Exterior.3b",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 30850,
+        "Y": 56150,
+        "Z": -480
+      },
+      "DoorId": "SW.Doorway.ForestA1.BossZone.DeepDarkT1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 32350,
+        "Y": 54350,
+        "Z": 850
+      },
+      "DoorId": "SW.Doorway.ForestA1.BossZone.WitchHut",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 27350,
+        "Y": 61550,
+        "Z": 5890
+      },
+      "DoorId": "SW.Doorway.ForestA1.Dungeon.8",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -89050,
+        "Y": 26400,
+        "Z": 2670
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.NoteRoom.EntryFromBoss",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -89050,
+        "Y": 30550,
+        "Z": 2950
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.NoteRoom.ExitToMain",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -100800,
+        "Y": 15800,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.StorageTower.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -98350,
+        "Y": 13753.209,
+        "Z": 8178.828
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.StorageTower.MiddleBottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -118800,
+        "Y": 41450,
+        "Z": -2403.333
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Interior.Ship1.Stern",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -112600,
+        "Y": 41250,
+        "Z": -2568.333
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Interior.Ship1.Bow",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -127300,
+        "Y": 41349.999,
+        "Z": -2510
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Interior.Ship2.IceLagoon",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -86850,
+        "Y": 272350,
+        "Z": 5843.333
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Dungeon.5",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -84150,
+        "Y": 273400,
+        "Z": 5962.809
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressExteriorEntrance.03",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -73050,
+        "Y": 272650,
+        "Z": 5820
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Dungeon.7",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -60450,
+        "Y": 287100,
+        "Z": 5610
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressExteriorEntrance.04",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -77809.889,
+        "Y": 281503.578,
+        "Z": 7684.997
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Portal",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -61950,
+        "Y": 163950,
+        "Z": 8620
+      },
+      "DoorId": "SW.Doorway.MeadowA1.Dungeon.3",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -54800,
+        "Y": 165250,
+        "Z": 9040
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Ext.4",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -25800,
+        "Y": 64750,
+        "Z": 640
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.7",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -25850,
+        "Y": 75800,
+        "Z": 920
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.8",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -40200,
+        "Y": 75300,
+        "Z": 690.682
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.10",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -34200,
+        "Y": 63900,
+        "Z": 640
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Ext.1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -33550,
+        "Y": 75350,
+        "Z": 948
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.8",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -36300,
+        "Y": 67900,
+        "Z": 1404.461
+      },
+      "DoorId": "SW.Doorway.PlainsA2.RavagerTower",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -21917.027,
+        "Y": 70157.838,
+        "Z": 695.243
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.7",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -22450,
+        "Y": 75200,
+        "Z": 640
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Ext.4",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -52650,
+        "Y": 77950,
+        "Z": 584
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Dungeon.5",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -51850,
+        "Y": 87100,
+        "Z": 1132.408
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.3",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -35792.9,
+        "Y": 83852.243,
+        "Z": 988.491
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.6",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -46400,
+        "Y": 77800,
+        "Z": 1064.11
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Rift.2",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -49400,
+        "Y": 85100,
+        "Z": 1217.5
+      },
+      "DoorId": "SW.Doorway.PlainsA2.CampTower",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -46350,
+        "Y": 84500,
+        "Z": 640
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Ext.2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -19899.485,
+        "Y": 40344.734,
+        "Z": 9530
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.NoteblockTower.MiddleTop",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -20851.043,
+        "Y": 47000.897,
+        "Z": 10300
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.NoteblockTower.Top",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -178700,
+        "Y": 12150,
+        "Z": 6520
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.SQTower.Int.02",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -197150,
+        "Y": 11650,
+        "Z": 6520
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.SQTower.Int.03",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -161150,
+        "Y": 13550,
+        "Z": 9278
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.SQTower.Int.01",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -229050,
+        "Y": 6100,
+        "Z": 1410
+      },
+      "DoorId": "SW.Doorway.Camp.Docks",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -115925,
+        "Y": 15050,
+        "Z": 7710
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.StorageTower.Top.Shortcut",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -116250,
+        "Y": 11500,
+        "Z": 6730
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.StorageTower.MiddleTop",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -114450,
+        "Y": -15500,
+        "Z": 6730
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.CampTower.MiddleTop",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -113625,
+        "Y": -37550,
+        "Z": 7710
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.RavagerTower.Top.Shortcut",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -113950,
+        "Y": -41100,
+        "Z": 6730
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.RavagerTower.MiddleTop",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -156500,
+        "Y": 42250,
+        "Z": -3044.545
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Interior.HalfShip.Stern",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -20150,
+        "Y": 18900,
+        "Z": 5760.139
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.NoteblockTower.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -19897.979,
+        "Y": 19628.526,
+        "Z": 11249.937
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.NoteblockTower.MiddleBottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -135351.043,
+        "Y": 11650.897,
+        "Z": 5747.08
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.NoteblockTower.FinalTop",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -214150,
+        "Y": 39450,
+        "Z": -2580
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.Interior.Basement3.House3",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -230650,
+        "Y": 41250,
+        "Z": -2743.333
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.Interior.Basement2.House2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 31900,
+        "Y": 117300,
+        "Z": 3720
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.SQTower.Ext.02",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 31500,
+        "Y": 124900,
+        "Z": 3721.591
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.SQTower.Ext.03",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 31450,
+        "Y": 112500,
+        "Z": 3748
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.SQTower.Ext.01",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 27600,
+        "Y": 124700,
+        "Z": 4260
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.6",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 26700,
+        "Y": 117450,
+        "Z": 2530
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.WesternWall.Stair.TwoEndTowers",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 19150,
+        "Y": 123200,
+        "Z": 850
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Junction.MainHall",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 19050,
+        "Y": 124300,
+        "Z": 775.333
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Tower1.Bottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 16700,
+        "Y": 124443.431,
+        "Z": 500
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.FortTrapEntrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 18850,
+        "Y": 124750,
+        "Z": 3457.5
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Tower1.SecretWall",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 20900,
+        "Y": 124550,
+        "Z": 6314.698
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Tower1.Top",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 18400,
+        "Y": 134000,
+        "Z": 6847.021
+      },
+      "DoorId": "SW.Doorway.DesertA1.Rift.12",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -57750,
+        "Y": 153500,
+        "Z": 8760
+      },
+      "DoorId": "SW.Doorway.MeadowR0.Exit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -30342.641,
+        "Y": 80193.342,
+        "Z": 1200
+      },
+      "DoorId": "SW.Doorway.PlainsA2.NoteblockTower",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -52000,
+        "Y": 40630,
+        "Z": 2600
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.Tower1.Bottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -218350,
+        "Y": -55750,
+        "Z": 3930
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.Interior2.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -219450,
+        "Y": -51400,
+        "Z": 3510
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.Interior2.Exit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -232650,
+        "Y": -54550,
+        "Z": 3510
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.Interior3.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -228200,
+        "Y": -54750,
+        "Z": 4140
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.Interior3.Exit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -244250,
+        "Y": -55800,
+        "Z": 4630
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.Interior.Exit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -242000,
+        "Y": -57550,
+        "Z": 4910
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.Interior.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -49750,
+        "Y": 41800,
+        "Z": 11350
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.Tower1.Top",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -68350,
+        "Y": 284100,
+        "Z": 9256.396
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressExteriorEntrance.02",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -98750,
+        "Y": -12950,
+        "Z": 8130
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.CampTower.MiddleBottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -101100,
+        "Y": -10850,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.CampTower.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -96550,
+        "Y": -39650,
+        "Z": 8130
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.RavagerTower.MiddleBottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -98900,
+        "Y": -37550,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.RavagerTower.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -136450,
+        "Y": -28650,
+        "Z": 11420
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.RavagerTower.Top",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -137950,
+        "Y": -26850,
+        "Z": 9600
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.RavagerTower.Bottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -136850,
+        "Y": -48950,
+        "Z": 11420
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.CampTower.Top",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -138250,
+        "Y": -47150,
+        "Z": 9600
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.CampTower.Bottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -195450,
+        "Y": 282300,
+        "Z": 10930
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressInteriorEntrance.04",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -189500,
+        "Y": 260150,
+        "Z": 13520
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressInteriorEntrance.01",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -189700,
+        "Y": 259950,
+        "Z": 10650
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressInteriorExit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -85197.91,
+        "Y": 220950,
+        "Z": 7570
+      },
+      "DoorId": "SW.Doorway.CarapaceA1.SecondLayerUp2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -92250,
+        "Y": 178300,
+        "Z": 7430
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Ext.3",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -26050,
+        "Y": 154200,
+        "Z": 4000
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Int.3",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -97441.708,
+        "Y": 43600,
+        "Z": 4210
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.WatchTower",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 32000,
+        "Y": 73000,
+        "Z": 4420
+      },
+      "DoorId": "SW.Doorway.ForestA1.Rift.8",
+      "MarkerType": 9,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -145150,
+        "Y": 41899.999,
+        "Z": -3070
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.Interior.HalfShip.Bow",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -194750,
+        "Y": 38850,
+        "Z": -2959.556
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.Interior.Basement4.House4",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -179550,
+        "Y": 39650,
+        "Z": -2813.333
+      },
+      "DoorId": "SW.Doorway.DesertA1.Lake.Interior.Basement1.House1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -65900,
+        "Y": -53598.811,
+        "Z": 8060
+      },
+      "DoorId": "SW.Doorway.PlainsA1.Interior.SpookyBarn",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -137850,
+        "Y": -5850,
+        "Z": 8410
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.StorageTower.Bottom",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -136350,
+        "Y": -7550,
+        "Z": 10167.216
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.StorageTower.Top",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -82250,
+        "Y": 283500,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressExit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -81850,
+        "Y": 283600,
+        "Z": 10650
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressExteriorEntrance.01",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -219050,
+        "Y": -94750,
+        "Z": 5050
+      },
+      "DoorId": "SW.Doorway.ForestA1.Interior.WitchHut",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -19600,
+        "Y": 106450,
+        "Z": -550
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Int.1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -36500,
+        "Y": 106550,
+        "Z": -480
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Int.2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -49600,
+        "Y": 107450,
+        "Z": -480
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Int.3",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -38950,
+        "Y": 154200,
+        "Z": 4140
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Int.4",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -10300,
+        "Y": 153850,
+        "Z": 4140
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Int.2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 6200,
+        "Y": 154050,
+        "Z": 4140
+      },
+      "DoorId": "SW.Doorway.MeadowA1.NatInteriors.Int.1",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -35950,
+        "Y": 123000,
+        "Z": 360
+      },
+      "DoorId": "SW.Doorway.PlainsA2.SecretInteriors.Int.4",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -176450,
+        "Y": 260400,
+        "Z": 15200
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressInteriorEntrance.02",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -178150,
+        "Y": 281500,
+        "Z": 10936.798
+      },
+      "DoorId": "SW.Doorway.MeadowA2.FortressInteriorEntrance.03",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -82850,
+        "Y": 247550,
+        "Z": 10020
+      },
+      "DoorId": "SW.Doorway.MeadowA2.Dungeon.1",
+      "MarkerType": 8,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -98700,
+        "Y": 15350,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.StorageTower.Top.Shortcut.Exit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -99100,
+        "Y": -11450,
+        "Z": 7383.333
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.CampTower.Top.Shortcut.Exit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -96900,
+        "Y": -38050,
+        "Z": 7360
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.RavagerTower.Top.Shortcut.Exit",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 3350,
+        "Y": 120400,
+        "Z": -270
+      },
+      "DoorId": "SW.Doorway.DesertA1.IceLagoon.IcebergEntrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 38850,
+        "Y": 123200,
+        "Z": 4700
+      },
+      "DoorId": "SW.Doorway.DesertA1.Cliffs.IcedCavernEntrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -113975,
+        "Y": -11950,
+        "Z": 7710
+      },
+      "DoorId": "SW.Doorway.PlainsA2.Interior.CampTower.Top.Shortcut",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -250150,
+        "Y": 274750,
+        "Z": 12470
+      },
+      "DoorId": "SW.Doorway.DeepDarkA2.Portal",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": -52475,
+        "Y": 42050,
+        "Z": 5330
+      },
+      "DoorId": "SW.Doorway.DesertA1.Fortress.Interior.Tower1.SecretWall",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 35850,
+        "Y": 73050,
+        "Z": 5960
+      },
+      "DoorId": "SW.Doorway.ForestA1.Interior.Mosstrosity.Entrance",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    },
+    {
+      "Location": {
+        "X": 25750,
+        "Y": 135600,
+        "Z": 5750
+      },
+      "DoorId": "SW.Doorway.DesertA1.Cliffs.IcedCavernEntrance2",
+      "MarkerType": 7,
+      "HasOptionalDoorMarkerOverride": false,
+      "OptionalDoorMarkerType": 0
+    }
+  ],
+  "cutscenes": [
+    "SW.UI.Cutscene.Cutscenes.CS01",
+    "SW.UI.Cutscene.Miniscene.MS48",
+    "SW.UI.Cutscene.Cutscenes.CS02",
+    "SW.UI.Cutscene.Cutscenes.CS30",
+    "SW.UI.Cutscene.MiniScene.MS03",
+    "SW.UI.Cutscene.MiniScene.MS44",
+    "SW.UI.Cutscene.MiniScene.MS43",
+    "SW.UI.Cutscene.Cutscenes.CS06",
+    "SW.UI.Cutscene.Cutscenes.CS07",
+    "SW.UI.Cutscene.Cutscenes.CS08",
+    "SW.UI.Cutscene.Cutscenes.CS10",
+    "SW.UI.Cutscene.Miniscene.MS29",
+    "SW.UI.cutscene.cutscenes.CS21",
+    "SW.UI.Cutscene.Cutscenes.CS16",
+    "SW.UI.Cutscene.Cutscenes.CS20",
+    "SW.UI.Cutscene.Cutscenes.CS23",
+    "SW.UI.Cutscene.Cutscenes.CS17",
+    "SW.UI.Cutscene.Cutscenes.CS12",
+    "SW.UI.Cutscene.Cutscenes.CS14",
+    "SW.UI.cutscene.Miniscene.MS49",
+    "SW.UI.Cutscene.Miniscene.MS46",
+    "SW.UI.Cutscene.Cutscenes.CS27",
+    "SW.UI.Cutscene.Miniscene.MS47",
+    "SW.UI.Cutscene.Cutscenes.CS28"
+  ]
+}

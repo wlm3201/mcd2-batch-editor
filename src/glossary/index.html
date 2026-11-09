@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <link id="favicon" rel="icon" href="data:," />
+    <title>词条总览 · MCD2</title>
+    <style>
+      /* GLOSSARY_STYLE */
+    </style>
+  </head>
+  <body>
+    <header class="mast">
+      <div class="shell mast-inner">
+        <div class="brand">
+          <img id="brand-icon" width="32" height="32" alt="" /><strong>MCD2</strong>
+          <h1 data-i18n="title">词条总览</h1>
+        </div>
+        <form class="search" role="search" id="search">
+          <svg
+            aria-hidden="true"
+            width="19"
+            height="19"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle cx="10.5" cy="10.5" r="6.5" />
+            <path d="m16 16 4.5 4.5" /></svg
+          ><label for="q" class="sr" data-i18n="search">搜索词条</label
+          ><input type="search" id="q" autocomplete="off" spellcheck="false" /><kbd id="shortcut"
+            >Ctrl K</kbd
+          >
+        </form>
+        <div class="mast-tools">
+          <span id="version"></span>
+          <div class="languages" role="group" aria-label="语言 / Language">
+            <button type="button" data-lang="zh" lang="zh-CN">中文</button
+            ><button type="button" data-lang="en" lang="en">EN</button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="shell">
+      <div class="filters">
+        <div class="filter-row">
+          <span class="filter-label" id="rank-label" data-i18n="tier">阶数</span>
+          <div id="ranks" class="choices" role="radiogroup" aria-labelledby="rank-label"></div>
+          <span class="results" id="count" role="status"></span>
+        </div>
+        <div class="filter-row pool-row">
+          <span class="filter-label" id="pool-label" data-i18n="scope">范围</span>
+          <div id="pools" class="choices" role="radiogroup" aria-labelledby="pool-label"></div>
+        </div>
+      </div>
+      <div id="effect-list"></div>
+      <section class="empty" id="empty" hidden>
+        <h2 data-i18n="empty">没有匹配的词条</h2>
+        <p data-i18n="emptyHint">试试其他名称、效果，或将范围改为“全部”。</p>
+      </section>
+    </main>
+    <script type="application/json" id="glossary-data">
+      /* GLOSSARY_DATA */
+    </script>
+    <script>
+      /* GLOSSARY_SCRIPT */
+    </script>
+  </body>
+</html>
